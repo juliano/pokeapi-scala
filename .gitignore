@@ -1,0 +1,16 @@
+*.class
+*.log
+target/
+.idea/
+.bsp/
+.DS_Store
+.env
+*.sc
+.sbtopts
+
+.bloop/
+.metals/
+.vscode/
+project/.bloop/
+project/metals.sbt
+project/project/
