@@ -3,7 +3,7 @@ package io.github.juliano.pokeapi.requests
 import io.github.juliano.pokeapi.PokeApiClient.PokeRequest
 import io.github.juliano.pokeapi.models.pokemon.Characteristic
 
-final case class CharacteristicRequest(id: String | Long) extends PokeRequest[Characteristic](id):
+final case class CharacteristicRequest(id: Long) extends PokeRequest[Characteristic](id):
   val resource = CharacteristicRequest.resource
 
 object CharacteristicRequest:
