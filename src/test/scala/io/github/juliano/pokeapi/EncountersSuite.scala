@@ -6,7 +6,7 @@ import io.github.juliano.pokeapi.requests.*
 import sttp.client3.SttpBackend
 import sttp.client3.armeria.cats.ArmeriaCatsBackend
 
-class EncountersSuite extends munit.FunSuite {
+class EncountersSuite extends munit.FunSuite:
   given backend: SttpBackend[IO, Any] = ArmeriaCatsBackend[IO]()
   val client: PokeApiClient[IO, Any] = PokeApiClient()
 
@@ -49,4 +49,3 @@ class EncountersSuite extends munit.FunSuite {
     val list = client.send(EncounterConditionValueRequest.resourceList()).unsafeRunSync()
     assert(list.count == 39)
   }
-}

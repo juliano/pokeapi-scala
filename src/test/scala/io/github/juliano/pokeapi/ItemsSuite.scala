@@ -3,7 +3,7 @@ package io.github.juliano.pokeapi;
 import io.github.juliano.pokeapi.requests.*
 import sttp.client3.httpclient.zio.HttpClientZioBackend
 
-class ItemsSuite extends ZIOSuite {
+class ItemsSuite extends ZIOSuite:
   val client = HttpClientZioBackend().map(implicit backend => PokeApiClient())
 
   spec("item by id", ItemRequest(1), _.name == "master-ball")
@@ -25,4 +25,3 @@ class ItemsSuite extends ZIOSuite {
   spec("item pocket by id", ItemPocketRequest(1), _.name == "misc")
   spec("item pocket by name", ItemPocketRequest("misc"), _.id == 1)
   spec("item pocket resource list", ItemPocketRequest.resourceList(), _.count == 8)
-}

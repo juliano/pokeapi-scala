@@ -4,7 +4,7 @@ import io.github.juliano.pokeapi.PokeApiClient.PokeRequest
 import io.github.juliano.pokeapi.requests.*
 import sttp.client3.{ HttpClientSyncBackend, Identity, SttpBackend }
 
-class BerriesSuite extends munit.FunSuite {
+class BerriesSuite extends munit.FunSuite:
   given backend: SttpBackend[Identity, Any] = HttpClientSyncBackend()
   val client = PokeApiClient()
 
@@ -46,4 +46,3 @@ class BerriesSuite extends munit.FunSuite {
     val list = client.send(BerryFlavorRequest.resourceList())
     assert(list.count == 5)
   }
-}

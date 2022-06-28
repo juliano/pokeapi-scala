@@ -2,7 +2,7 @@ import org.scalafmt.sbt.ScalafmtPlugin.autoImport.scalafmtOnCompile
 
 val scala3Version = "3.1.3"
 
-lazy val root = project
+lazy val sdk = project
   .in(file("."))
   .settings(
     name := "pokeapi-sdk",

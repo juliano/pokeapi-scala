@@ -4,7 +4,7 @@ import cats.effect.IO
 import io.github.juliano.pokeapi.requests.*
 import sttp.client3.asynchttpclient.cats.AsyncHttpClientCatsBackend
 
-class LocationsSuite extends CatsSuite {
+class LocationsSuite extends CatsSuite:
   val client = AsyncHttpClientCatsBackend[IO]().map(implicit backend => PokeApiClient())
 
   spec("location by id", LocationRequest(1), _.name == "canalave-city")
@@ -22,4 +22,3 @@ class LocationsSuite extends CatsSuite {
   spec("region by id", RegionRequest(1), _.name == "kanto")
   spec("region by name", RegionRequest("kanto"), _.id == 1)
   spec("region resource list", RegionRequest.resourceList(), _.count == 9)
-}

@@ -3,7 +3,7 @@ package io.github.juliano.pokeapi
 import io.github.juliano.pokeapi.requests.*
 import sttp.client3.asynchttpclient.zio.AsyncHttpClientZioBackend
 
-class PokemonSuite extends ZIOSuite {
+class PokemonSuite extends ZIOSuite:
   val client = AsyncHttpClientZioBackend().map(implicit backend => PokeApiClient())
 
   spec("ability by id", AbilityRequest(1), _.name == "stench")
@@ -75,4 +75,3 @@ class PokemonSuite extends ZIOSuite {
   spec("type by id", TypeRequest(1), _.name == "normal")
   spec("type by name", TypeRequest("normal"), _.id == 1)
   spec("type resource list", TypeRequest.resourceList(), _.count == 20)
-}

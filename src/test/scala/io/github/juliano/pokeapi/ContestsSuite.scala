@@ -6,7 +6,7 @@ import sttp.client3.{ HttpClientFutureBackend, SttpBackend }
 
 import scala.concurrent.Future
 
-class ContestsSuite extends FutureSuite {
+class ContestsSuite extends FutureSuite:
   given backend: SttpBackend[Future, WebSockets] = HttpClientFutureBackend()
   val client = PokeApiClient()
 
@@ -23,4 +23,3 @@ class ContestsSuite extends FutureSuite {
     SuperContestEffectRequest.resourceList(),
     _.count == 22
   )
-}

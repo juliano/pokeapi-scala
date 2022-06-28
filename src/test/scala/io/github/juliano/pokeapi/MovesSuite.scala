@@ -5,7 +5,7 @@ import sttp.client3.{ SttpBackend, TryHttpURLConnectionBackend }
 
 import scala.util.Try
 
-class MovesSuite extends TrySuite {
+class MovesSuite extends TrySuite:
   given backend: SttpBackend[Try, Any] = TryHttpURLConnectionBackend()
   val client = PokeApiClient()
 
@@ -36,4 +36,3 @@ class MovesSuite extends TrySuite {
   spec("move target by id", MoveTargetRequest(1), _.name == "specific-move")
   spec("move target by name", MoveTargetRequest("specific-move"), _.id == 1)
   spec("move target by resource list", MoveTargetRequest.resourceList(), _.count == 15)
-}

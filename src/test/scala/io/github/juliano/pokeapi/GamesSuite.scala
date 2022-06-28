@@ -4,7 +4,7 @@ import cats.effect.IO
 import io.github.juliano.pokeapi.requests.*
 import sttp.client3.httpclient.fs2.HttpClientFs2Backend
 
-class GamesSuite extends Fs2Suite {
+class GamesSuite extends Fs2Suite:
   val client = HttpClientFs2Backend.resource[IO]().map(implicit backend => PokeApiClient())
 
   spec("generation by id", GenerationRequest(1), _.name == "generation-i")
@@ -22,4 +22,3 @@ class GamesSuite extends Fs2Suite {
   spec("version group by id", VersionGroupRequest(1), _.name == "red-blue")
   spec("version group by name", VersionGroupRequest("red-blue"), _.id == 1)
   spec("version group resource list", VersionGroupRequest.resourceList(), _.count == 24)
-}

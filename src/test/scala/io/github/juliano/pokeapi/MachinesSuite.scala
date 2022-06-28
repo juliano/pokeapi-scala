@@ -5,7 +5,7 @@ import sttp.capabilities.WebSockets
 import sttp.client3.{ Identity, SttpBackend }
 import sttp.client3.okhttp.OkHttpSyncBackend
 
-class MachinesSuite extends munit.FunSuite {
+class MachinesSuite extends munit.FunSuite:
   given backend: SttpBackend[Identity, WebSockets] = OkHttpSyncBackend()
   val client = PokeApiClient()
 
@@ -17,4 +17,3 @@ class MachinesSuite extends munit.FunSuite {
     val list = client.send(MachineRequest.resourceList())
     assert(list.count == 1688)
   }
-}
