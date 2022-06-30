@@ -1,4 +1,4 @@
-# PokeAPI Scala Client
+# PokeAPI Scala Client <a href="https://pokeapi.co/api/v2/pokemon/6"><img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png' height=70px/></a>
 [![CI](https://github.com/juliano/pokeapi-scala/actions/workflows/ci.yml/badge.svg)](https://github.com/juliano/pokeapi-scala/actions/workflows/release.yml)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.juliano/pokeapi-scala_3/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.juliano/pokeapi-scala_3)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -21,11 +21,11 @@ This client is written using [sttp](https://sttp.softwaremill.com/en/latest/inde
 
 ## Usage
 
-Instantiate a backend implicitly using `given`, create a `PokeApiClient()` and start consuming the api, calling `client.send(PokeRequest(id | name))`. Most requests accept an `id: Long` and / or `name: String`.
+Instantiate a backend implicitly, create a `PokeApiClient()` and start consuming the api, calling `client.send(PokeRequest(id | name))`. Most requests accept an `id: Long` or `name: String` (have a look at [Scala 3 Union Types](https://docs.scala-lang.org/scala3/book/types-union.html)).
 
-Regarding `PokeRequest(id | name)`, have a look at [Scala 3 Union Types](https://docs.scala-lang.org/scala3/book/types-union.html).
+It's possible to [list / paginate resources](https://pokeapi.co/docs/v2#resource-listspagination-section) as well, calling `client.send(PokeRequest.resourceList(offset: Int, limit: Int))`
 
-## Caching
+### Caching
 
 Every response is automatically cached in memory, making all subsequent requests for the same resource pull cached data. 
 
@@ -115,4 +115,4 @@ Feel free to open pull requests or submit issues!
 
 ## License
 
-pokeapi-scala is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT)
+pokeapi-scala is available as open source under the terms of the [MIT license](https://opensource.org/licenses/MIT).
