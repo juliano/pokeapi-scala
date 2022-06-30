@@ -1,6 +1,5 @@
 package io.github.juliano.pokeapi
 
-import io.github.juliano.pokeapi.PokeApiClient.PokeRequest
 import io.github.juliano.pokeapi.requests.*
 import sttp.client3.{ HttpClientSyncBackend, Identity, SttpBackend }
 
