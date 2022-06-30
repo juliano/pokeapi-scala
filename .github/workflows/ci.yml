@@ -8,8 +8,11 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2.3.4
-        with:
-          java-version: "adopt@1.14"
-      - uses: olafurpg/setup-scala@v13
-      - run: sbt -v +test
+    - name: Checkout
+      uses: actions/checkout@v2.3.4
+    - name: Setup Scala with JDK 14
+      uses: olafurpg/setup-scala@v13
+      with:
+        java-version: "adopt@1.14"
+    - name: Build and Test
+      run: sbt -v +test
