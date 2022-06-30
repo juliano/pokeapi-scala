@@ -9,13 +9,15 @@ inThisBuild(List(
   )
 ))
 
+sonatypeCredentialHost := "s01.oss.sonatype.org"
+sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
+
 val scala3Version = "3.1.3"
 
 lazy val pokeapi = project
   .in(file("."))
   .settings(
     name := "pokeapi-scala",
-    version := "0.1.0",
     scalaVersion := scala3Version,
     scalafmtOnCompile := true,
     libraryDependencies ++= Seq(
