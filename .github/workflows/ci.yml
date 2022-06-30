@@ -12,4 +12,4 @@ jobs:
         with:
           fetch-depth: 0
       - uses: olafurpg/setup-scala@v13
-        - run: sbt test
+      - run: sbt test
