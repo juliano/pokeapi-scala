@@ -5,15 +5,17 @@ import zio.json.JsonDecoder
 
 package object pokeapi:
   trait ZIOSuite extends munit.FunSuite:
-    import zio.{ Runtime, ZIO }
+    import zio.{ Runtime, Unsafe, ZIO }
 
     val client: ZIO[Any, Throwable, PokeApiClient[[A] =>> zio.ZIO[Any, Throwable, A], _]]
 
     def spec[T](label: String, request: PokeRequest[T], f: T => Boolean)(using
         JsonDecoder[T]
     ): Unit = test(label) {
-      val zio    = client.flatMap(_.send(request))
-      val result = Runtime.default.unsafeRun(zio)
+      val zio = client.flatMap(_.send(request))
+      val result = Unsafe.unsafeCompat { implicit u =>
+        Runtime.default.unsafe.run(zio).getOrThrowFiberFailure()
+      }
       assert(f(result))
     }
 
