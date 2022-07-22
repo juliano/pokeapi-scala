@@ -84,12 +84,14 @@ client.send(ContestTypeRequest(1)).onComplete {
 ```scala
 import io.github.juliano.pokeapi.requests.PokemonRequest
 import sttp.client3.asynchttpclient.zio.AsyncHttpClientZioBackend
-import zio.{ Runtime, ZIO }
+import zio.{ Runtime, Unsafe, ZIO }
 
 val client = AsyncHttpClientZioBackend().map(implicit backend => PokeApiClient())
 
 val zio = client.flatMap(_.send(PokemonRequest("bulbasaur")))
-val pokemon = Runtime.default.unsafeRun(zio)
+val pokemon = Unsafe.unsafeCompat { implicit u =>
+  Runtime.default.unsafe.run(zio).getOrThrowFiberFailure()
+}
 print(pokemon.id)
 ```
 
