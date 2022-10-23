@@ -13,7 +13,7 @@ class GamesSuite extends Fs2Suite:
 
   spec("pokedex by id", PokedexRequest(1), _.name == "national")
   spec("pokedex by name", PokedexRequest("national"), _.id == 1)
-  spec("pokedex resource list", PokedexRequest.resourceList(), _.count == 28)
+  spec("pokedex resource list", PokedexRequest.resourceList(), _.count == 29)
 
   spec("version by id", VersionRequest(1), _.name == "red")
   spec("version by name", VersionRequest("red"), _.id == 1)
