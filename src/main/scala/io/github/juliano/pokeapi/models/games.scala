@@ -17,7 +17,7 @@ object games:
   )
 
   object Generation:
-    given decoder: JsonDecoder[Generation] = DeriveJsonDecoder.gen
+    given JsonDecoder[Generation] = DeriveJsonDecoder.gen
 
   final case class Pokedex(
       id: Int,
@@ -31,12 +31,12 @@ object games:
   )
 
   object Pokedex:
-    given decoder: JsonDecoder[Pokedex] = DeriveJsonDecoder.gen
+    given JsonDecoder[Pokedex] = DeriveJsonDecoder.gen
 
   final case class PokemonEntry(entry_number: Int, pokemon_species: NamedAPIResource)
 
   object PokemonEntry:
-    given decoder: JsonDecoder[PokemonEntry] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonEntry] = DeriveJsonDecoder.gen
 
   final case class Version(
       id: Int,
@@ -46,7 +46,7 @@ object games:
   )
 
   object Version:
-    given decoder: JsonDecoder[Version] = DeriveJsonDecoder.gen
+    given JsonDecoder[Version] = DeriveJsonDecoder.gen
 
   final case class VersionGroup(
       id: Int,
@@ -60,4 +60,4 @@ object games:
   )
 
   object VersionGroup:
-    given decoder: JsonDecoder[VersionGroup] = DeriveJsonDecoder.gen
+    given JsonDecoder[VersionGroup] = DeriveJsonDecoder.gen

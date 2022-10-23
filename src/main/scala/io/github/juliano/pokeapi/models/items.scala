@@ -23,12 +23,12 @@ object items:
   )
 
   object Item:
-    given decoder: JsonDecoder[Item] = DeriveJsonDecoder.gen
+    given JsonDecoder[Item] = DeriveJsonDecoder.gen
 
   final case class ItemSprites(default: String)
 
   object ItemSprites:
-    given decoder: JsonDecoder[ItemSprites] = DeriveJsonDecoder.gen
+    given JsonDecoder[ItemSprites] = DeriveJsonDecoder.gen
 
   final case class ItemHolderPokemon(
       pokemon: NamedAPIResource,
@@ -36,12 +36,12 @@ object items:
   )
 
   object ItemHolderPokemon:
-    given decoder: JsonDecoder[ItemHolderPokemon] = DeriveJsonDecoder.gen
+    given JsonDecoder[ItemHolderPokemon] = DeriveJsonDecoder.gen
 
   final case class ItemHolderPokemonVersionDetail(rarity: Int, version: NamedAPIResource)
 
   object ItemHolderPokemonVersionDetail:
-    given decoder: JsonDecoder[ItemHolderPokemonVersionDetail] = DeriveJsonDecoder.gen
+    given JsonDecoder[ItemHolderPokemonVersionDetail] = DeriveJsonDecoder.gen
 
   final case class ItemAttribute(
       id: Int,
@@ -52,7 +52,7 @@ object items:
   )
 
   object ItemAttribute:
-    given decoder: JsonDecoder[ItemAttribute] = DeriveJsonDecoder.gen
+    given JsonDecoder[ItemAttribute] = DeriveJsonDecoder.gen
 
   final case class ItemCategory(
       id: Int,
@@ -63,7 +63,7 @@ object items:
   )
 
   object ItemCategory:
-    given decoder: JsonDecoder[ItemCategory] = DeriveJsonDecoder.gen
+    given JsonDecoder[ItemCategory] = DeriveJsonDecoder.gen
 
   final case class ItemFlingEffect(
       id: Int,
@@ -73,7 +73,7 @@ object items:
   )
 
   object ItemFlingEffect:
-    given decoder: JsonDecoder[ItemFlingEffect] = DeriveJsonDecoder.gen
+    given JsonDecoder[ItemFlingEffect] = DeriveJsonDecoder.gen
 
   final case class ItemPocket(
       id: Int,
@@ -83,4 +83,4 @@ object items:
   )
 
   object ItemPocket:
-    given decoder: JsonDecoder[ItemPocket] = DeriveJsonDecoder.gen
+    given JsonDecoder[ItemPocket] = DeriveJsonDecoder.gen

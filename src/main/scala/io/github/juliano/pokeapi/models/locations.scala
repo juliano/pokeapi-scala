@@ -14,7 +14,7 @@ object locations:
   )
 
   object Location:
-    given decoder: JsonDecoder[Location] = DeriveJsonDecoder.gen
+    given JsonDecoder[Location] = DeriveJsonDecoder.gen
 
   final case class LocationArea(
       id: Int,
@@ -27,7 +27,7 @@ object locations:
   )
 
   object LocationArea:
-    given decoder: JsonDecoder[LocationArea] = DeriveJsonDecoder.gen
+    given JsonDecoder[LocationArea] = DeriveJsonDecoder.gen
 
   final case class EncounterMethodRate(
       @jsonField("encounter_method") encounterMethod: NamedAPIResource,
@@ -35,12 +35,12 @@ object locations:
   )
 
   object EncounterMethodRate:
-    given decoder: JsonDecoder[EncounterMethodRate] = DeriveJsonDecoder.gen
+    given JsonDecoder[EncounterMethodRate] = DeriveJsonDecoder.gen
 
   final case class EncounterVersionDetails(rate: Int, version: NamedAPIResource)
 
   object EncounterVersionDetails:
-    given decoder: JsonDecoder[EncounterVersionDetails] = DeriveJsonDecoder.gen
+    given JsonDecoder[EncounterVersionDetails] = DeriveJsonDecoder.gen
 
   final case class PokemonEncounter(
       pokemon: NamedAPIResource,
@@ -48,7 +48,7 @@ object locations:
   )
 
   object PokemonEncounter:
-    given decoder: JsonDecoder[PokemonEncounter] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonEncounter] = DeriveJsonDecoder.gen
 
   final case class PalParkArea(
       id: Int,
@@ -58,7 +58,7 @@ object locations:
   )
 
   object PalParkArea:
-    given decoder: JsonDecoder[PalParkArea] = DeriveJsonDecoder.gen
+    given JsonDecoder[PalParkArea] = DeriveJsonDecoder.gen
 
   final case class PalParkEncounterSpecies(
       base_score: Int,
@@ -67,7 +67,7 @@ object locations:
   )
 
   object PalParkEncounterSpecies:
-    given decoder: JsonDecoder[PalParkEncounterSpecies] = DeriveJsonDecoder.gen
+    given JsonDecoder[PalParkEncounterSpecies] = DeriveJsonDecoder.gen
 
   final case class Region(
       id: Int,
@@ -80,4 +80,4 @@ object locations:
   )
 
   object Region:
-    given decoder: JsonDecoder[Region] = DeriveJsonDecoder.gen
+    given JsonDecoder[Region] = DeriveJsonDecoder.gen

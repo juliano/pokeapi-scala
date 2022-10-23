@@ -12,12 +12,12 @@ object contests:
   )
 
   object ContestType:
-    given decoder: JsonDecoder[ContestType] = DeriveJsonDecoder.gen
+    given JsonDecoder[ContestType] = DeriveJsonDecoder.gen
 
   final case class ContestName(name: String, color: String, language: NamedAPIResource)
 
   object ContestName:
-    given decoder: JsonDecoder[ContestName] = DeriveJsonDecoder.gen
+    given JsonDecoder[ContestName] = DeriveJsonDecoder.gen
 
   final case class ContestEffect(
       id: Int,
@@ -28,7 +28,7 @@ object contests:
   )
 
   object ContestEffect:
-    given decoder: JsonDecoder[ContestEffect] = DeriveJsonDecoder.gen
+    given JsonDecoder[ContestEffect] = DeriveJsonDecoder.gen
 
   case class SuperContestEffect(
       id: Int,
@@ -38,4 +38,4 @@ object contests:
   )
 
   object SuperContestEffect:
-    given decoder: JsonDecoder[SuperContestEffect] = DeriveJsonDecoder.gen
+    given JsonDecoder[SuperContestEffect] = DeriveJsonDecoder.gen

@@ -11,4 +11,4 @@ final case class ResourceList(
 )
 
 object ResourceList:
-  given decoder: JsonDecoder[ResourceList] = DeriveJsonDecoder.gen
+  given JsonDecoder[ResourceList] = DeriveJsonDecoder.gen

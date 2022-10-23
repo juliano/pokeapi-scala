@@ -18,7 +18,7 @@ object pokemon:
   )
 
   object Ability:
-    given decoder: JsonDecoder[Ability] = DeriveJsonDecoder.gen
+    given JsonDecoder[Ability] = DeriveJsonDecoder.gen
 
   final case class AbilityEffectChange(
       @jsonField("effect_entries") effectEntries: List[Effect],
@@ -26,7 +26,7 @@ object pokemon:
   )
 
   object AbilityEffectChange:
-    given decoder: JsonDecoder[AbilityEffectChange] = DeriveJsonDecoder.gen
+    given JsonDecoder[AbilityEffectChange] = DeriveJsonDecoder.gen
 
   final case class AbilityFlavorText(
       @jsonField("flavor_text") flavorText: String,
@@ -35,7 +35,7 @@ object pokemon:
   )
 
   object AbilityFlavorText:
-    given decoder: JsonDecoder[AbilityFlavorText] = DeriveJsonDecoder.gen
+    given JsonDecoder[AbilityFlavorText] = DeriveJsonDecoder.gen
 
   final case class AbilityPokemon(
       @jsonField("is_hidden") isHidden: Boolean,
@@ -44,7 +44,7 @@ object pokemon:
   )
 
   object AbilityPokemon:
-    given decoder: JsonDecoder[AbilityPokemon] = DeriveJsonDecoder.gen
+    given JsonDecoder[AbilityPokemon] = DeriveJsonDecoder.gen
 
   final case class Characteristic(
       id: Int,
@@ -55,7 +55,7 @@ object pokemon:
   )
 
   object Characteristic:
-    given decoder: JsonDecoder[Characteristic] = DeriveJsonDecoder.gen
+    given JsonDecoder[Characteristic] = DeriveJsonDecoder.gen
 
   final case class EggGroup(
       id: Int,
@@ -65,7 +65,7 @@ object pokemon:
   )
 
   object EggGroup:
-    given decoder: JsonDecoder[EggGroup] = DeriveJsonDecoder.gen
+    given JsonDecoder[EggGroup] = DeriveJsonDecoder.gen
 
   final case class Gender(
       id: Int,
@@ -75,7 +75,7 @@ object pokemon:
   )
 
   object Gender:
-    given decoder: JsonDecoder[Gender] = DeriveJsonDecoder.gen
+    given JsonDecoder[Gender] = DeriveJsonDecoder.gen
 
   final case class PokemonSpeciesGender(
       rate: Int,
@@ -83,7 +83,7 @@ object pokemon:
   )
 
   object PokemonSpeciesGender:
-    given decoder: JsonDecoder[PokemonSpeciesGender] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonSpeciesGender] = DeriveJsonDecoder.gen
 
   final case class GrowthRate(
       id: Int,
@@ -95,12 +95,12 @@ object pokemon:
   )
 
   object GrowthRate:
-    given decoder: JsonDecoder[GrowthRate] = DeriveJsonDecoder.gen
+    given JsonDecoder[GrowthRate] = DeriveJsonDecoder.gen
 
   final case class GrowthRateExperienceLevel(level: Int, experience: Int)
 
   object GrowthRateExperienceLevel:
-    given decoder: JsonDecoder[GrowthRateExperienceLevel] = DeriveJsonDecoder.gen
+    given JsonDecoder[GrowthRateExperienceLevel] = DeriveJsonDecoder.gen
 
   final case class Nature(
       id: Int,
@@ -117,7 +117,7 @@ object pokemon:
   )
 
   object Nature:
-    given decoder: JsonDecoder[Nature] = DeriveJsonDecoder.gen
+    given JsonDecoder[Nature] = DeriveJsonDecoder.gen
 
   final case class NatureStatChange(
       @jsonField("max_change") maxChange: Int,
@@ -125,7 +125,7 @@ object pokemon:
   )
 
   object NatureStatChange:
-    given decoder: JsonDecoder[NatureStatChange] = DeriveJsonDecoder.gen
+    given JsonDecoder[NatureStatChange] = DeriveJsonDecoder.gen
 
   final case class MoveBattleStylePreference(
       @jsonField("low_hp_preference") lowHpPreference: Int,
@@ -134,7 +134,7 @@ object pokemon:
   )
 
   object MoveBattleStylePreference:
-    given decoder: JsonDecoder[MoveBattleStylePreference] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveBattleStylePreference] = DeriveJsonDecoder.gen
 
   final case class PokeathlonStat(
       id: Int,
@@ -144,7 +144,7 @@ object pokemon:
   )
 
   object PokeathlonStat:
-    given decoder: JsonDecoder[PokeathlonStat] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokeathlonStat] = DeriveJsonDecoder.gen
 
   final case class NaturePokeathlonStatAffectSets(
       increase: List[NaturePokeathlonStatAffect],
@@ -152,7 +152,7 @@ object pokemon:
   )
 
   object NaturePokeathlonStatAffectSets:
-    given decoder: JsonDecoder[NaturePokeathlonStatAffectSets] = DeriveJsonDecoder.gen
+    given JsonDecoder[NaturePokeathlonStatAffectSets] = DeriveJsonDecoder.gen
 
   final case class NaturePokeathlonStatAffect(
       @jsonField("max_change") maxChange: Int,
@@ -160,7 +160,7 @@ object pokemon:
   )
 
   object NaturePokeathlonStatAffect:
-    given decoder: JsonDecoder[NaturePokeathlonStatAffect] = DeriveJsonDecoder.gen
+    given JsonDecoder[NaturePokeathlonStatAffect] = DeriveJsonDecoder.gen
 
   final case class Pokemon(
       id: Int,
@@ -184,7 +184,7 @@ object pokemon:
   )
 
   object Pokemon:
-    given decoder: JsonDecoder[Pokemon] = DeriveJsonDecoder.gen
+    given JsonDecoder[Pokemon] = DeriveJsonDecoder.gen
 
   final case class PokemonAbility(
       @jsonField("is_hidden") isHidden: Boolean,
@@ -193,22 +193,22 @@ object pokemon:
   )
 
   object PokemonAbility:
-    given decoder: JsonDecoder[PokemonAbility] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonAbility] = DeriveJsonDecoder.gen
 
   final case class PokemonType(slot: Int, `type`: NamedAPIResource)
 
   object PokemonType:
-    given decoder: JsonDecoder[PokemonType] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonType] = DeriveJsonDecoder.gen
 
   final case class PokemonFormType(slot: Int, `type`: NamedAPIResource)
 
   object PokemonFormType:
-    given decoder: JsonDecoder[PokemonFormType] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonFormType] = DeriveJsonDecoder.gen
 
   final case class PokemonTypePast(generation: NamedAPIResource, types: List[PokemonType])
 
   object PokemonTypePast:
-    given decoder: JsonDecoder[PokemonTypePast] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonTypePast] = DeriveJsonDecoder.gen
 
   final case class PokemonHeldItem(
       item: NamedAPIResource,
@@ -216,12 +216,12 @@ object pokemon:
   )
 
   object PokemonHeldItem:
-    given decoder: JsonDecoder[PokemonHeldItem] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonHeldItem] = DeriveJsonDecoder.gen
 
   final case class PokemonHeldItemVersion(version: NamedAPIResource, rarity: Int)
 
   object PokemonHeldItemVersion {
-    given decoder: JsonDecoder[PokemonHeldItemVersion] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonHeldItemVersion] = DeriveJsonDecoder.gen
   }
 
   final case class PokemonMove(
@@ -230,7 +230,7 @@ object pokemon:
   )
 
   object PokemonMove:
-    given decoder: JsonDecoder[PokemonMove] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonMove] = DeriveJsonDecoder.gen
 
   final case class PokemonMoveVersion(
       @jsonField("move_learn_method") moveLearnMethod: NamedAPIResource,
@@ -239,7 +239,7 @@ object pokemon:
   )
 
   object PokemonMoveVersion:
-    given decoder: JsonDecoder[PokemonMoveVersion] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonMoveVersion] = DeriveJsonDecoder.gen
 
   final case class PokemonStat(
       stat: NamedAPIResource,
@@ -248,7 +248,7 @@ object pokemon:
   )
 
   object PokemonStat:
-    given decoder: JsonDecoder[PokemonStat] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonStat] = DeriveJsonDecoder.gen
 
   final case class PokemonSprites(
       @jsonField("front_default") frontDefault: String,
@@ -262,7 +262,7 @@ object pokemon:
   )
 
   object PokemonSprites:
-    given decoder: JsonDecoder[PokemonSprites] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonSprites] = DeriveJsonDecoder.gen
 
   final case class LocationAreaEncounter(
       @jsonField("location_area") locationArea: NamedAPIResource,
@@ -270,7 +270,7 @@ object pokemon:
   )
 
   object LocationAreaEncounter:
-    given decoder: JsonDecoder[LocationAreaEncounter] = DeriveJsonDecoder.gen
+    given JsonDecoder[LocationAreaEncounter] = DeriveJsonDecoder.gen
 
   final case class PokemonColor(
       id: Int,
@@ -280,7 +280,7 @@ object pokemon:
   )
 
   object PokemonColor:
-    given decoder: JsonDecoder[PokemonColor] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonColor] = DeriveJsonDecoder.gen
 
   final case class PokemonForm(
       id: Int,
@@ -300,12 +300,12 @@ object pokemon:
   )
 
   object PokemonForm:
-    given decoder: JsonDecoder[PokemonForm] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonForm] = DeriveJsonDecoder.gen
 
   final case class FormType(slot: Int, `type`: NamedAPIResource)
 
   object FormType:
-    given decoder: JsonDecoder[FormType] = DeriveJsonDecoder.gen
+    given JsonDecoder[FormType] = DeriveJsonDecoder.gen
 
   final case class PokemonFormSprites(
       @jsonField("front_default") frontDefault: String,
@@ -315,7 +315,7 @@ object pokemon:
   )
 
   object PokemonFormSprites:
-    given decoder: JsonDecoder[PokemonFormSprites] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonFormSprites] = DeriveJsonDecoder.gen
 
   final case class PokemonHabitat(
       id: Int,
@@ -325,7 +325,7 @@ object pokemon:
   )
 
   object PokemonHabitat:
-    given decoder: JsonDecoder[PokemonHabitat] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonHabitat] = DeriveJsonDecoder.gen
 
   final case class PokemonShape(
       id: Int,
@@ -336,7 +336,7 @@ object pokemon:
   )
 
   object PokemonShape:
-    given decoder: JsonDecoder[PokemonShape] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonShape] = DeriveJsonDecoder.gen
 
   final case class AwesomeName(
       @jsonField("awesome_name") awesomeName: String,
@@ -344,7 +344,7 @@ object pokemon:
   )
 
   object AwesomeName:
-    given decoder: JsonDecoder[AwesomeName] = DeriveJsonDecoder.gen
+    given JsonDecoder[AwesomeName] = DeriveJsonDecoder.gen
 
   final case class PokemonSpecies(
       id: Int,
@@ -377,12 +377,12 @@ object pokemon:
   )
 
   object PokemonSpecies:
-    given decoder: JsonDecoder[PokemonSpecies] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonSpecies] = DeriveJsonDecoder.gen
 
   final case class Genus(genus: String, language: NamedAPIResource)
 
   object Genus:
-    given decoder: JsonDecoder[Genus] = DeriveJsonDecoder.gen
+    given JsonDecoder[Genus] = DeriveJsonDecoder.gen
 
   final case class PokemonSpeciesDexEntry(
       @jsonField("entry_number") entryNumber: Int,
@@ -390,7 +390,7 @@ object pokemon:
   )
 
   object PokemonSpeciesDexEntry:
-    given decoder: JsonDecoder[PokemonSpeciesDexEntry] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonSpeciesDexEntry] = DeriveJsonDecoder.gen
 
   final case class PalParkEncounterArea(
       @jsonField("base_score") baseScore: Int,
@@ -399,7 +399,7 @@ object pokemon:
   )
 
   object PalParkEncounterArea:
-    given decoder: JsonDecoder[PalParkEncounterArea] = DeriveJsonDecoder.gen
+    given JsonDecoder[PalParkEncounterArea] = DeriveJsonDecoder.gen
 
   final case class PokemonSpeciesVariety(
       @jsonField("is_default") isDefault: Boolean,
@@ -407,7 +407,7 @@ object pokemon:
   )
 
   object PokemonSpeciesVariety:
-    given decoder: JsonDecoder[PokemonSpeciesVariety] = DeriveJsonDecoder.gen
+    given JsonDecoder[PokemonSpeciesVariety] = DeriveJsonDecoder.gen
 
   final case class Stat(
       id: Int,
@@ -422,7 +422,7 @@ object pokemon:
   )
 
   object Stat:
-    given decoder: JsonDecoder[Stat] = DeriveJsonDecoder.gen
+    given JsonDecoder[Stat] = DeriveJsonDecoder.gen
 
   final case class MoveStatAffectSets(
       increase: List[MoveStatAffect],
@@ -430,12 +430,12 @@ object pokemon:
   )
 
   object MoveStatAffectSets:
-    given decoder: JsonDecoder[MoveStatAffectSets] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveStatAffectSets] = DeriveJsonDecoder.gen
 
   final case class MoveStatAffect(change: Int, move: NamedAPIResource)
 
   object MoveStatAffect:
-    given decoder: JsonDecoder[MoveStatAffect] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveStatAffect] = DeriveJsonDecoder.gen
 
   final case class NatureStatAffectSets(
       increase: List[NamedAPIResource],
@@ -443,7 +443,7 @@ object pokemon:
   )
 
   object NatureStatAffectSets:
-    given decoder: JsonDecoder[NatureStatAffectSets] = DeriveJsonDecoder.gen
+    given JsonDecoder[NatureStatAffectSets] = DeriveJsonDecoder.gen
 
   final case class Type(
       id: Int,
@@ -459,12 +459,12 @@ object pokemon:
   )
 
   object Type:
-    given decoder: JsonDecoder[Type] = DeriveJsonDecoder.gen
+    given JsonDecoder[Type] = DeriveJsonDecoder.gen
 
   final case class TypePokemon(slot: Int, pokemon: NamedAPIResource)
 
   object TypePokemon:
-    given decoder: JsonDecoder[TypePokemon] = DeriveJsonDecoder.gen
+    given JsonDecoder[TypePokemon] = DeriveJsonDecoder.gen
 
   final case class TypeRelations(
       @jsonField("no_damage_to") noDamageTo: List[NamedAPIResource],
@@ -476,7 +476,7 @@ object pokemon:
   )
 
   object TypeRelations:
-    given decoder: JsonDecoder[TypeRelations] = DeriveJsonDecoder.gen
+    given JsonDecoder[TypeRelations] = DeriveJsonDecoder.gen
 
   final case class TypeRelationsPast(
       generation: NamedAPIResource,
@@ -484,4 +484,4 @@ object pokemon:
   )
 
   object TypeRelationsPast:
-    given decoder: JsonDecoder[TypeRelationsPast] = DeriveJsonDecoder.gen
+    given JsonDecoder[TypeRelationsPast] = DeriveJsonDecoder.gen

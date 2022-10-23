@@ -12,4 +12,4 @@ object machines:
   )
 
   object Machine:
-    given decoder: JsonDecoder[Machine] = DeriveJsonDecoder.gen
+    given JsonDecoder[Machine] = DeriveJsonDecoder.gen

@@ -11,7 +11,7 @@ object evolution:
   )
 
   object EvolutionChain:
-    given decoder: JsonDecoder[EvolutionChain] = DeriveJsonDecoder.gen
+    given JsonDecoder[EvolutionChain] = DeriveJsonDecoder.gen
 
   final case class ChainLink(
       @jsonField("is_baby") isBaby: Boolean,
@@ -21,7 +21,7 @@ object evolution:
   )
 
   object ChainLink:
-    given decoder: JsonDecoder[ChainLink] = DeriveJsonDecoder.gen
+    given JsonDecoder[ChainLink] = DeriveJsonDecoder.gen
 
   final case class EvolutionDetail(
       item: Option[NamedAPIResource],
@@ -45,7 +45,7 @@ object evolution:
   )
 
   object EvolutionDetail:
-    given decoder: JsonDecoder[EvolutionDetail] = DeriveJsonDecoder.gen
+    given JsonDecoder[EvolutionDetail] = DeriveJsonDecoder.gen
 
   final case class EvolutionTrigger(
       id: Int,
@@ -55,4 +55,4 @@ object evolution:
   )
 
   object EvolutionTrigger:
-    given decoder: JsonDecoder[EvolutionTrigger] = DeriveJsonDecoder.gen
+    given JsonDecoder[EvolutionTrigger] = DeriveJsonDecoder.gen

@@ -33,12 +33,12 @@ object moves:
   )
 
   object Move:
-    given decoder: JsonDecoder[Move] = DeriveJsonDecoder.gen
+    given JsonDecoder[Move] = DeriveJsonDecoder.gen
 
   final case class ContestComboSets(normal: ContestComboDetail, `super`: ContestComboDetail)
 
   object ContestComboSets:
-    given decoder: JsonDecoder[ContestComboSets] = DeriveJsonDecoder.gen
+    given JsonDecoder[ContestComboSets] = DeriveJsonDecoder.gen
 
   final case class ContestComboDetail(
       @jsonField("use_before") useBefore: Option[List[NamedAPIResource]],
@@ -46,7 +46,7 @@ object moves:
   )
 
   object ContestComboDetail:
-    given decoder: JsonDecoder[ContestComboDetail] = DeriveJsonDecoder.gen
+    given JsonDecoder[ContestComboDetail] = DeriveJsonDecoder.gen
 
   final case class MoveFlavorText(
       @jsonField("flavor_text") flavorText: String,
@@ -55,7 +55,7 @@ object moves:
   )
 
   object MoveFlavorText:
-    given decoder: JsonDecoder[MoveFlavorText] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveFlavorText] = DeriveJsonDecoder.gen
 
   final case class MoveMetaData(
       ailment: NamedAPIResource,
@@ -73,12 +73,12 @@ object moves:
   )
 
   object MoveMetaData:
-    given decoder: JsonDecoder[MoveMetaData] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveMetaData] = DeriveJsonDecoder.gen
 
   final case class MoveStatChange(change: Int, stat: NamedAPIResource)
 
   object MoveStatChange:
-    given decoder: JsonDecoder[MoveStatChange] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveStatChange] = DeriveJsonDecoder.gen
 
   final case class PastMoveStatValues(
       accuracy: Int,
@@ -91,7 +91,7 @@ object moves:
   )
 
   object PastMoveStatValues:
-    given decoder: JsonDecoder[PastMoveStatValues] = DeriveJsonDecoder.gen
+    given JsonDecoder[PastMoveStatValues] = DeriveJsonDecoder.gen
 
   final case class MoveAilment(
       id: Int,
@@ -101,7 +101,7 @@ object moves:
   )
 
   object MoveAilment:
-    given decoder: JsonDecoder[MoveAilment] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveAilment] = DeriveJsonDecoder.gen
 
   final case class MoveBattleStyle(
       id: Int,
@@ -110,7 +110,7 @@ object moves:
   )
 
   object MoveBattleStyle:
-    given decoder: JsonDecoder[MoveBattleStyle] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveBattleStyle] = DeriveJsonDecoder.gen
 
   final case class MoveCategory(
       id: Int,
@@ -120,7 +120,7 @@ object moves:
   )
 
   object MoveCategory:
-    given decoder: JsonDecoder[MoveCategory] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveCategory] = DeriveJsonDecoder.gen
 
   final case class MoveDamageClass(
       id: Int,
@@ -131,7 +131,7 @@ object moves:
   )
 
   object MoveDamageClass:
-    given decoder: JsonDecoder[MoveDamageClass] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveDamageClass] = DeriveJsonDecoder.gen
 
   final case class MoveLearnMethod(
       id: Int,
@@ -142,7 +142,7 @@ object moves:
   )
 
   object MoveLearnMethod:
-    given decoder: JsonDecoder[MoveLearnMethod] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveLearnMethod] = DeriveJsonDecoder.gen
 
   final case class MoveTarget(
       id: Int,
@@ -153,4 +153,4 @@ object moves:
   )
 
   object MoveTarget:
-    given decoder: JsonDecoder[MoveTarget] = DeriveJsonDecoder.gen
+    given JsonDecoder[MoveTarget] = DeriveJsonDecoder.gen

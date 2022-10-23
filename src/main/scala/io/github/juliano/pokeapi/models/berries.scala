@@ -20,12 +20,12 @@ object berries:
   )
 
   object Berry:
-    given decoder: JsonDecoder[Berry] = DeriveJsonDecoder.gen
+    given JsonDecoder[Berry] = DeriveJsonDecoder.gen
 
   final case class BerryFlavorMap(potency: Int, flavor: NamedAPIResource)
 
   object BerryFlavorMap:
-    given decoder: JsonDecoder[BerryFlavorMap] = DeriveJsonDecoder.gen
+    given JsonDecoder[BerryFlavorMap] = DeriveJsonDecoder.gen
 
   final case class BerryFirmness(
       id: Int,
@@ -35,7 +35,7 @@ object berries:
   )
 
   object BerryFirmness:
-    given decoder: JsonDecoder[BerryFirmness] = DeriveJsonDecoder.gen
+    given JsonDecoder[BerryFirmness] = DeriveJsonDecoder.gen
 
   final case class BerryFlavor(
       id: Int,
@@ -46,9 +46,9 @@ object berries:
   )
 
   object BerryFlavor:
-    given decoder: JsonDecoder[BerryFlavor] = DeriveJsonDecoder.gen
+    given JsonDecoder[BerryFlavor] = DeriveJsonDecoder.gen
 
   final case class FlavorBerryMap(potency: Int, berry: NamedAPIResource)
 
   object FlavorBerryMap:
-    given decoder: JsonDecoder[FlavorBerryMap] = DeriveJsonDecoder.gen
+    given JsonDecoder[FlavorBerryMap] = DeriveJsonDecoder.gen

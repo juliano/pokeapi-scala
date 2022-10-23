@@ -7,7 +7,7 @@ object encounters:
   case class EncounterMethod(id: Int, name: String, order: Int, names: List[Name])
 
   object EncounterMethod:
-    given decoder: JsonDecoder[EncounterMethod] = DeriveJsonDecoder.gen
+    given JsonDecoder[EncounterMethod] = DeriveJsonDecoder.gen
 
   case class EncounterCondition(
       id: Int,
@@ -17,7 +17,7 @@ object encounters:
   )
 
   object EncounterCondition:
-    given decoder: JsonDecoder[EncounterCondition] = DeriveJsonDecoder.gen
+    given JsonDecoder[EncounterCondition] = DeriveJsonDecoder.gen
 
   case class EncounterConditionValue(
       id: Int,
@@ -27,4 +27,4 @@ object encounters:
   )
 
   object EncounterConditionValue:
-    given decoder: JsonDecoder[EncounterConditionValue] = DeriveJsonDecoder.gen
+    given JsonDecoder[EncounterConditionValue] = DeriveJsonDecoder.gen
