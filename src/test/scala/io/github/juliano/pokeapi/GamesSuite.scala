@@ -9,16 +9,16 @@ class GamesSuite extends Fs2Suite:
 
   spec("generation by id", GenerationRequest(1), _.name == "generation-i")
   spec("generation by name", GenerationRequest("generation-i"), _.id == 1)
-  spec("generation resource list", GenerationRequest.resourceList(), _.count == 8)
+  spec("generation resource list", GenerationRequest.resourceList(), _.count == 9)
 
   spec("pokedex by id", PokedexRequest(1), _.name == "national")
   spec("pokedex by name", PokedexRequest("national"), _.id == 1)
-  spec("pokedex resource list", PokedexRequest.resourceList(), _.count == 29)
+  spec("pokedex resource list", PokedexRequest.resourceList(), _.count == 32)
 
   spec("version by id", VersionRequest(1), _.name == "red")
   spec("version by name", VersionRequest("red"), _.id == 1)
-  spec("version resource list", VersionRequest.resourceList(), _.count == 39)
+  spec("version resource list", VersionRequest.resourceList(), _.count == 43)
 
   spec("version group by id", VersionGroupRequest(1), _.name == "red-blue")
   spec("version group by name", VersionGroupRequest("red-blue"), _.id == 1)
-  spec("version group resource list", VersionGroupRequest.resourceList(), _.count == 24)
+  spec("version group resource list", VersionGroupRequest.resourceList(), _.count == 27)

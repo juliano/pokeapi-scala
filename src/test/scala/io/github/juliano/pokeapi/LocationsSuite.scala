@@ -9,11 +9,11 @@ class LocationsSuite extends CatsSuite:
 
   spec("location by id", LocationRequest(1), _.name == "canalave-city")
   spec("location by name", LocationRequest("canalave-city"), _.id == 1)
-  spec("location resource list", LocationRequest.resourceList(), _.count == 797)
+  spec("location resource list", LocationRequest.resourceList(), _.count == 1036)
 
   spec("location area by id", LocationAreaRequest(1), _.name == "canalave-city-area")
   spec("location area by name", LocationAreaRequest("canalave-city-area"), _.id == 1)
-  spec("location area resource list", LocationAreaRequest.resourceList(), _.count == 732)
+  spec("location area resource list", LocationAreaRequest.resourceList(), _.count == 1054)
 
   spec("pal park area by id", PalParkAreaRequest(1), _.name == "forest")
   spec("pal park area by name", PalParkAreaRequest("forest"), _.id == 1)
@@ -21,4 +21,4 @@ class LocationsSuite extends CatsSuite:
 
   spec("region by id", RegionRequest(1), _.name == "kanto")
   spec("region by name", RegionRequest("kanto"), _.id == 1)
-  spec("region resource list", RegionRequest.resourceList(), _.count == 9)
+  spec("region resource list", RegionRequest.resourceList(), _.count == 10)

@@ -20,7 +20,7 @@ class EncountersSuite extends munit.FunSuite:
   }
   test("enconter method resource list") {
     val list = client.send(EncounterMethodRequest.resourceList()).unsafeRunSync()
-    assert(list.count == 31)
+    assert(list.count == 37)
   }
 
   test("enconter condition by id") {

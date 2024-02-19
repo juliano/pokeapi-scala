@@ -11,7 +11,7 @@ class MovesSuite extends TrySuite:
 
   spec("move by id", MoveRequest(1), _.name == "pound")
   spec("move by name", MoveRequest("pound"), _.id == 1)
-  spec("move by resource list", MoveRequest.resourceList(), _.count == 844)
+  spec("move by resource list", MoveRequest.resourceList(), _.count == 937)
 
   spec("move ailment by id", MoveAilmentRequest(1), _.name == "paralysis")
   spec("move ailment by name", MoveAilmentRequest("paralysis"), _.id == 1)
@@ -35,4 +35,4 @@ class MovesSuite extends TrySuite:
 
   spec("move target by id", MoveTargetRequest(1), _.name == "specific-move")
   spec("move target by name", MoveTargetRequest("specific-move"), _.id == 1)
-  spec("move target by resource list", MoveTargetRequest.resourceList(), _.count == 15)
+  spec("move target by resource list", MoveTargetRequest.resourceList(), _.count == 16)

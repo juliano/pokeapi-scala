@@ -8,7 +8,7 @@ class PokemonSuite extends ZIOSuite:
 
   spec("ability by id", AbilityRequest(1), _.name == "stench")
   spec("ability by name", AbilityRequest("stench"), _.id == 1)
-  spec("ability resource list", AbilityRequest.resourceList(), _.count == 327)
+  spec("ability resource list", AbilityRequest.resourceList(), _.count == 367)
 
   spec("characteristic by id", CharacteristicRequest(1), _.highestStat.name.contains("hp"))
   spec("characteristic resource list", CharacteristicRequest.resourceList(), _.count == 30)
@@ -35,7 +35,7 @@ class PokemonSuite extends ZIOSuite:
 
   spec("pokemon by id", PokemonRequest(1), _.name == "bulbasaur")
   spec("pokemon by name", PokemonRequest("bulbasaur"), _.id == 1)
-  spec("pokemon resource list", PokemonRequest.resourceList(), _.count == 1154)
+  spec("pokemon resource list", PokemonRequest.resourceList(), _.count == 1302)
 
   spec(
     "location area encounter by id",
@@ -54,7 +54,7 @@ class PokemonSuite extends ZIOSuite:
 
   spec("pokemon form by id", PokemonFormRequest(1), _.name == "bulbasaur")
   spec("pokemon form by name", PokemonFormRequest("bulbasaur"), _.id == 1)
-  spec("pokemon form resource list", PokemonFormRequest.resourceList(), _.count == 1323)
+  spec("pokemon form resource list", PokemonFormRequest.resourceList(), _.count == 1473)
 
   spec("pokemon habitat by id", PokemonHabitatRequest(1), _.name == "cave")
   spec("pokemon habitat by name", PokemonHabitatRequest("cave"), _.id == 1)
@@ -66,7 +66,7 @@ class PokemonSuite extends ZIOSuite:
 
   spec("pokemon species by id", PokemonSpeciesRequest(1), _.name == "bulbasaur")
   spec("pokemon species by name", PokemonSpeciesRequest("bulbasaur"), _.id == 1)
-  spec("pokemon species resource list", PokemonSpeciesRequest.resourceList(), _.count == 905)
+  spec("pokemon species resource list", PokemonSpeciesRequest.resourceList(), _.count == 1025)
 
   spec("stat by id", StatRequest(1), _.name == "hp")
   spec("stat by name", StatRequest("hp"), _.id == 1)

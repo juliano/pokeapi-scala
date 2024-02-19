@@ -8,7 +8,7 @@ class ItemsSuite extends ZIOSuite:
 
   spec("item by id", ItemRequest(1), _.name == "master-ball")
   spec("item by name", ItemRequest("master-ball"), _.id == 1)
-  spec("item resource list", ItemRequest.resourceList(), _.count == 1607)
+  spec("item resource list", ItemRequest.resourceList(), _.count == 2110)
 
   spec("item attribute by id", ItemAttributeRequest(1), _.name == "countable")
   spec("item attribute by name", ItemAttributeRequest("countable"), _.id == 1)
@@ -16,7 +16,7 @@ class ItemsSuite extends ZIOSuite:
 
   spec("item category by id", ItemCategoryRequest(1), _.name == "stat-boosts")
   spec("item category by name", ItemCategoryRequest("stat-boosts"), _.id == 1)
-  spec("item category resource list", ItemCategoryRequest.resourceList(), _.count == 50)
+  spec("item category resource list", ItemCategoryRequest.resourceList(), _.count == 54)
 
   spec("item fling effect by id", ItemFlingEffectRequest(1), _.name == "badly-poison")
   spec("item fling effect by name", ItemFlingEffectRequest("badly-poison"), _.id == 1)
