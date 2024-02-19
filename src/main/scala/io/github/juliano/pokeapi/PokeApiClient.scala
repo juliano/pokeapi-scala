@@ -18,7 +18,7 @@ case class PokeApiClient[F[_], +P](host: ApiHost = ApiHost.default)(using
   private val cache: Cache[String, Product] = Scaffeine().build[String, Product]()
 
   def send[A](request: PokeRequest[A])(using JsonDecoder[A]): F[A] =
-    cache.getIfPresent(request.toString) match {
+    cache.getIfPresent(request.toString) match
       case Some(value) =>
         monadError.unit(value.asInstanceOf[A])
       case None =>
@@ -28,7 +28,6 @@ case class PokeApiClient[F[_], +P](host: ApiHost = ApiHost.default)(using
             monadError.unit(value)
           case Left(error) => monadError.error(error)
         }
-    }
 
   private def doSend[A](
       request: PokeRequest[A]

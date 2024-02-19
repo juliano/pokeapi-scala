@@ -1,6 +1,6 @@
 package io.github.juliano.pokeapi.models
 
-import zio.json.{ jsonField, DeriveJsonDecoder, JsonDecoder }
+import zio.json.*
 
 object utility:
   final case class Language(
@@ -30,10 +30,11 @@ object utility:
   object Effect:
     given JsonDecoder[Effect] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class Encounter(
-      @jsonField("min_level") minLevel: Int,
-      @jsonField("max_level") maxLevel: Int,
-      @jsonField("condition_values") conditionValues: List[NamedAPIResource],
+      minLevel: Int,
+      maxLevel: Int,
+      conditionValues: List[NamedAPIResource],
       chance: Int,
       method: NamedAPIResource
   )
@@ -41,25 +42,28 @@ object utility:
   object Encounter:
     given JsonDecoder[Encounter] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class FlavorText(
-      @jsonField("flavor_text") flavorText: String,
+      flavorText: String,
       language: NamedAPIResource
   )
 
   object FlavorText:
     given JsonDecoder[FlavorText] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class GenerationGameIndex(
-      @jsonField("game_index") gameIndex: Int,
+      gameIndex: Int,
       generation: NamedAPIResource
   )
 
   object GenerationGameIndex:
     given JsonDecoder[GenerationGameIndex] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class MachineVersionDetail(
       machine: APIResource,
-      @jsonField("version_group") versionGroup: NamedAPIResource
+      versionGroup: NamedAPIResource
   )
 
   object MachineVersionDetail:
@@ -75,36 +79,40 @@ object utility:
   object NamedAPIResource:
     given JsonDecoder[NamedAPIResource] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class VerboseEffect(
       effect: String,
-      @jsonField("short_effect") shortEffect: String,
+      shortEffect: String,
       language: NamedAPIResource
   )
 
   object VerboseEffect:
     given JsonDecoder[VerboseEffect] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class VersionEncounterDetail(
       version: NamedAPIResource,
-      @jsonField("max_chance") maxChance: Int,
-      @jsonField("encounter_details") encounterDetails: List[Encounter]
+      maxChance: Int,
+      encounterDetails: List[Encounter]
   )
 
   object VersionEncounterDetail:
     given JsonDecoder[VersionEncounterDetail] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class VersionGameIndex(
-      @jsonField("game_index") gameIndex: Int,
+      gameIndex: Int,
       version: NamedAPIResource
   )
 
   object VersionGameIndex:
     given JsonDecoder[VersionGameIndex] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class VersionGroupFlavorText(
       text: String,
       language: NamedAPIResource,
-      @jsonField("version_group") versionGroup: NamedAPIResource
+      versionGroup: NamedAPIResource
   )
 
   object VersionGroupFlavorText:

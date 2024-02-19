@@ -2,32 +2,33 @@ package io.github.juliano.pokeapi.models
 
 import io.github.juliano.pokeapi.models.pokemon.AbilityEffectChange
 import io.github.juliano.pokeapi.models.utility.*
-import zio.json.{ jsonField, DeriveJsonDecoder, JsonDecoder }
+import zio.json.*
 
 object moves:
+  @jsonMemberNames(SnakeCase)
   final case class Move(
       id: Int,
       name: String,
       accuracy: Int,
-      @jsonField("effect_chance") effectChance: Option[Int],
+      effectChance: Option[Int],
       pp: Int,
       priority: Int,
       power: Int,
-      @jsonField("contest_combos") contestCombos: ContestComboSets,
-      @jsonField("contest_type") contestType: NamedAPIResource,
-      @jsonField("contest_effect") contestEffect: APIResource,
-      @jsonField("damage_class") damageClass: NamedAPIResource,
-      @jsonField("effect_entries") effectEntries: List[VerboseEffect],
-      @jsonField("effect_changes") effectChanges: List[AbilityEffectChange],
-      @jsonField("learned_by_pokemon") learnedByPokemon: List[NamedAPIResource],
-      @jsonField("flavor_text_entries") flavorTextEntries: List[MoveFlavorText],
+      contestCombos: ContestComboSets,
+      contestType: NamedAPIResource,
+      contestEffect: APIResource,
+      damageClass: NamedAPIResource,
+      effectEntries: List[VerboseEffect],
+      effectChanges: List[AbilityEffectChange],
+      learnedByPokemon: List[NamedAPIResource],
+      flavorTextEntries: List[MoveFlavorText],
       generation: NamedAPIResource,
       machines: List[MachineVersionDetail],
       meta: MoveMetaData,
       names: List[Name],
-      @jsonField("past_values") pastValues: List[PastMoveStatValues],
-      @jsonField("stat_changes") statChanges: List[MoveStatChange],
-      @jsonField("super_contest_effect") superContestEffect: APIResource,
+      pastValues: List[PastMoveStatValues],
+      statChanges: List[MoveStatChange],
+      superContestEffect: APIResource,
       target: NamedAPIResource,
       `type`: NamedAPIResource
   )
@@ -40,36 +41,39 @@ object moves:
   object ContestComboSets:
     given JsonDecoder[ContestComboSets] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class ContestComboDetail(
-      @jsonField("use_before") useBefore: Option[List[NamedAPIResource]],
-      @jsonField("use_after") useAfter: Option[List[NamedAPIResource]]
+      useBefore: Option[List[NamedAPIResource]],
+      useAfter: Option[List[NamedAPIResource]]
   )
 
   object ContestComboDetail:
     given JsonDecoder[ContestComboDetail] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class MoveFlavorText(
-      @jsonField("flavor_text") flavorText: String,
+      flavorText: String,
       language: NamedAPIResource,
-      @jsonField("version_group") versionGroup: NamedAPIResource
+      versionGroup: NamedAPIResource
   )
 
   object MoveFlavorText:
     given JsonDecoder[MoveFlavorText] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class MoveMetaData(
       ailment: NamedAPIResource,
       category: NamedAPIResource,
-      @jsonField("min_hits") minHits: Option[Int],
-      @jsonField("max_hits") maxHits: Option[Int],
-      @jsonField("min_turns") minTurns: Option[Int],
-      @jsonField("max_turns") maxTurns: Option[Int],
+      minHits: Option[Int],
+      maxHits: Option[Int],
+      minTurns: Option[Int],
+      maxTurns: Option[Int],
       drain: Int,
       healing: Int,
-      @jsonField("crit_rate") critRate: Int,
-      @jsonField("ailment_chance") ailmentChance: Int,
-      @jsonField("flinch_chance") flinchChance: Int,
-      @jsonField("stat_chance") statChance: Int
+      critRate: Int,
+      ailmentChance: Int,
+      flinchChance: Int,
+      statChance: Int
   )
 
   object MoveMetaData:
@@ -80,14 +84,15 @@ object moves:
   object MoveStatChange:
     given JsonDecoder[MoveStatChange] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class PastMoveStatValues(
       accuracy: Int,
-      @jsonField("effect_chance") effectChance: Int,
+      effectChance: Int,
       power: Int,
       pp: Int,
-      @jsonField("effect_entries") effectEntries: List[VerboseEffect],
+      effectEntries: List[VerboseEffect],
       `type`: NamedAPIResource,
-      @jsonField("version_group") versionGroup: NamedAPIResource
+      versionGroup: NamedAPIResource
   )
 
   object PastMoveStatValues:
@@ -133,12 +138,13 @@ object moves:
   object MoveDamageClass:
     given JsonDecoder[MoveDamageClass] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class MoveLearnMethod(
       id: Int,
       name: String,
       descriptions: List[Description],
       names: List[Name],
-      @jsonField("version_groups") versionGroups: List[NamedAPIResource]
+      versionGroups: List[NamedAPIResource]
   )
 
   object MoveLearnMethod:

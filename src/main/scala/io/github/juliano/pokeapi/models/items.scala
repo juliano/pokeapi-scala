@@ -1,24 +1,25 @@
 package io.github.juliano.pokeapi.models
 
 import io.github.juliano.pokeapi.models.utility.*
-import zio.json.{ jsonField, DeriveJsonDecoder, JsonDecoder }
+import zio.json.*
 
 object items:
+  @jsonMemberNames(SnakeCase)
   final case class Item(
       id: Int,
       name: String,
       cost: Int,
-      @jsonField("fling_power") flingPower: Option[Int],
-      @jsonField("fling_effect") flingEffect: Option[NamedAPIResource],
+      flingPower: Option[Int],
+      flingEffect: Option[NamedAPIResource],
       attributes: List[NamedAPIResource],
       category: NamedAPIResource,
-      @jsonField("effect_entries") effectEntries: List[VerboseEffect],
-      @jsonField("flavor_text_entries") flavorTextEntries: List[VersionGroupFlavorText],
-      @jsonField("game_indices") gameIndices: List[GenerationGameIndex],
+      effectEntries: List[VerboseEffect],
+      flavorTextEntries: List[VersionGroupFlavorText],
+      gameIndices: List[GenerationGameIndex],
       names: List[Name],
       sprites: ItemSprites,
-      @jsonField("held_by_pokemon") heldByPokemon: List[ItemHolderPokemon],
-      @jsonField("baby_trigger_for") babyTriggerFor: Option[APIResource],
+      heldByPokemon: List[ItemHolderPokemon],
+      babyTriggerFor: Option[APIResource],
       machines: List[MachineVersionDetail]
   )
 
@@ -30,9 +31,10 @@ object items:
   object ItemSprites:
     given JsonDecoder[ItemSprites] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class ItemHolderPokemon(
       pokemon: NamedAPIResource,
-      @jsonField("version_details") versionDetails: List[ItemHolderPokemon]
+      versionDetails: List[ItemHolderPokemon]
   )
 
   object ItemHolderPokemon:
@@ -65,10 +67,11 @@ object items:
   object ItemCategory:
     given JsonDecoder[ItemCategory] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class ItemFlingEffect(
       id: Int,
       name: String,
-      @jsonField("effect_entries") effectEntries: List[Effect],
+      effectEntries: List[Effect],
       items: List[NamedAPIResource]
   )
 

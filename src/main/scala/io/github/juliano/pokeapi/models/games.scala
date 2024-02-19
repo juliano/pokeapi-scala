@@ -1,33 +1,35 @@
 package io.github.juliano.pokeapi.models
 
 import io.github.juliano.pokeapi.models.utility.*
-import zio.json.{ jsonField, DeriveJsonDecoder, JsonDecoder }
+import zio.json.*
 
 object games:
+  @jsonMemberNames(SnakeCase)
   final case class Generation(
       id: Int,
       name: String,
       abilities: List[NamedAPIResource],
       names: List[Name],
-      @jsonField("main_region") mainRegion: NamedAPIResource,
+      mainRegion: NamedAPIResource,
       moves: List[NamedAPIResource],
-      @jsonField("pokemon_species") pokemonSpecies: List[NamedAPIResource],
+      pokemonSpecies: List[NamedAPIResource],
       types: List[NamedAPIResource],
-      @jsonField("version_groups") versionGroups: List[NamedAPIResource]
+      versionGroups: List[NamedAPIResource]
   )
 
   object Generation:
     given JsonDecoder[Generation] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class Pokedex(
       id: Int,
       name: String,
-      @jsonField("is_main_series") isMainSeries: Boolean,
+      isMainSeries: Boolean,
       descriptions: List[Description],
       names: List[Name],
-      @jsonField("pokemon_entries") pokemonEntries: List[PokemonEntry],
+      pokemonEntries: List[PokemonEntry],
       region: Option[NamedAPIResource],
-      @jsonField("version_groups") versionGroups: List[NamedAPIResource]
+      versionGroups: List[NamedAPIResource]
   )
 
   object Pokedex:
@@ -38,22 +40,24 @@ object games:
   object PokemonEntry:
     given JsonDecoder[PokemonEntry] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class Version(
       id: Int,
       name: String,
       names: List[Name],
-      @jsonField("version_group") versionGroup: NamedAPIResource
+      versionGroup: NamedAPIResource
   )
 
   object Version:
     given JsonDecoder[Version] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class VersionGroup(
       id: Int,
       name: String,
       order: Int,
       generation: NamedAPIResource,
-      @jsonField("move_learn_methods") moveLearnMethods: List[NamedAPIResource],
+      moveLearnMethods: List[NamedAPIResource],
       pokedexes: List[NamedAPIResource],
       regions: List[NamedAPIResource],
       versions: List[NamedAPIResource]

@@ -1,57 +1,61 @@
 package io.github.juliano.pokeapi.models
 
 import io.github.juliano.pokeapi.models.utility.{ Name, NamedAPIResource }
-import zio.json.{ jsonField, DeriveJsonDecoder, JsonDecoder }
+import zio.json.*
 
 object evolution:
+  @jsonMemberNames(SnakeCase)
   final case class EvolutionChain(
       id: Int,
-      @jsonField("baby_trigger_item") babyTriggerItem: Option[NamedAPIResource],
+      babyTriggerItem: Option[NamedAPIResource],
       chain: ChainLink
   )
 
   object EvolutionChain:
     given JsonDecoder[EvolutionChain] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class ChainLink(
-      @jsonField("is_baby") isBaby: Boolean,
+      isBaby: Boolean,
       species: NamedAPIResource,
-      @jsonField("evolution_details") evolutionDetails: List[EvolutionDetail],
-      @jsonField("evolves_to") evolvesTo: List[ChainLink]
+      evolutionDetails: List[EvolutionDetail],
+      evolvesTo: List[ChainLink]
   )
 
   object ChainLink:
     given JsonDecoder[ChainLink] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class EvolutionDetail(
       item: Option[NamedAPIResource],
       trigger: NamedAPIResource,
       gender: Option[Int],
-      @jsonField("held_item") heldItem: Option[NamedAPIResource],
-      @jsonField("known_move") knownMove: Option[NamedAPIResource],
-      @jsonField("known_move_type") knownMoveType: Option[NamedAPIResource],
+      heldItem: Option[NamedAPIResource],
+      knownMove: Option[NamedAPIResource],
+      knownMoveType: Option[NamedAPIResource],
       location: Option[NamedAPIResource],
-      @jsonField("min_level") minLevel: Int,
-      @jsonField("min_happiness") minHappiness: Option[Int],
-      @jsonField("min_beauty") minBeauty: Option[Int],
-      @jsonField("min_affection") minAffection: Option[Int],
-      @jsonField("needs_overworld_rain") needsOverworldRain: Boolean,
-      @jsonField("party_species") partySpecies: Option[NamedAPIResource],
-      @jsonField("party_type") partyType: Option[NamedAPIResource],
-      @jsonField("relative_physical_stats") relativePhysicalStats: Option[Int],
-      @jsonField("time_of_day") timeOfDay: String,
-      @jsonField("trade_species") tradeSpecies: Option[NamedAPIResource],
-      @jsonField("turn_upside_down") turnUpsideDown: Boolean
+      minLevel: Int,
+      minHappiness: Option[Int],
+      minBeauty: Option[Int],
+      minAffection: Option[Int],
+      needsOverworldRain: Boolean,
+      partySpecies: Option[NamedAPIResource],
+      partyType: Option[NamedAPIResource],
+      relativePhysicalStats: Option[Int],
+      timeOfDay: String,
+      tradeSpecies: Option[NamedAPIResource],
+      turnUpsideDown: Boolean
   )
 
   object EvolutionDetail:
     given JsonDecoder[EvolutionDetail] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class EvolutionTrigger(
       id: Int,
       name: String,
       names: List[Name],
-      @jsonField("pokemon_species") pokemonSpecies: List[NamedAPIResource]
+      pokemonSpecies: List[NamedAPIResource]
   )
 
   object EvolutionTrigger:

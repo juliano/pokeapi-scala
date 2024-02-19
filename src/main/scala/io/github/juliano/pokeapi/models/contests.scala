@@ -1,13 +1,14 @@
 package io.github.juliano.pokeapi.models
 
-import zio.json.{ jsonField, DeriveJsonDecoder, JsonDecoder }
 import io.github.juliano.pokeapi.models.utility.*
+import zio.json.*
 
 object contests:
+  @jsonMemberNames(SnakeCase)
   final case class ContestType(
       id: Int,
       name: String,
-      @jsonField("berry_flavor") berryFlavor: NamedAPIResource,
+      berryFlavor: NamedAPIResource,
       names: List[ContestName]
   )
 
@@ -19,21 +20,23 @@ object contests:
   object ContestName:
     given JsonDecoder[ContestName] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   final case class ContestEffect(
       id: Int,
       appeal: Int,
       jam: Int,
-      @jsonField("effect_entries") effectEntries: List[Effect],
-      @jsonField("flavor_text_entries") flavorTextEntries: List[FlavorText]
+      effectEntries: List[Effect],
+      flavorTextEntries: List[FlavorText]
   )
 
   object ContestEffect:
     given JsonDecoder[ContestEffect] = DeriveJsonDecoder.gen
 
+  @jsonMemberNames(SnakeCase)
   case class SuperContestEffect(
       id: Int,
       appeal: Int,
-      @jsonField("flavor_text_entries") flavorTextEntries: List[FlavorText],
+      flavorTextEntries: List[FlavorText],
       moves: List[NamedAPIResource]
   )
 
