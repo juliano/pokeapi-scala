@@ -12,7 +12,7 @@ To get started check the documentation on [https://pokeapi.co/docs/v2](https://p
 Add the following to your build.sbt:
 
 ```scala
-libraryDependencies += "io.github.juliano" % "pokeapi-scala_3" % "0.1.0"
+libraryDependencies += "io.github.juliano" % "pokeapi-scala_3" % "0.3.0"
 ```
 
 ### `Sttp` backends support
@@ -27,7 +27,7 @@ It's possible to [list / paginate resources](https://pokeapi.co/docs/v2#resource
 
 ### Caching
 
-Every response is automatically cached in memory, making all subsequent requests for the same resource pull cached data. 
+Every response is automatically cached in memory, making all subsequent requests to the same resource pull cached data. 
 
 ## Examples
 
