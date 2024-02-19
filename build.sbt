@@ -12,7 +12,7 @@ inThisBuild(List(
 sonatypeCredentialHost := "s01.oss.sonatype.org"
 sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
 
-val scala3Version = "3.2.0"
+val scala3Version = "3.3.1"
 
 lazy val pokeapi = project
   .in(file("."))
