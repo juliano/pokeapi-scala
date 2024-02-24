@@ -3,12 +3,10 @@ package io.github.juliano.pokeapi
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 import io.github.juliano.pokeapi.requests.*
-import sttp.client3.SttpBackend
-import sttp.client3.armeria.cats.ArmeriaCatsBackend
+import sttp.client4.armeria.cats.ArmeriaCatsBackend
 
 class EncountersSuite extends munit.FunSuite:
-  given backend: SttpBackend[IO, Any] = ArmeriaCatsBackend[IO]()
-  val client: PokeApiClient[IO, Any] = PokeApiClient()
+  val client: PokeApiClient[IO] = PokeApiClient(ArmeriaCatsBackend[IO]())
 
   test("enconter method by id") {
     val encounterMethod = client.send(EncounterMethodRequest(1)).unsafeRunSync()

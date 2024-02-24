@@ -2,8 +2,8 @@ package io.github.juliano.pokeapi
 
 import com.github.blemale.scaffeine.{ Cache, Scaffeine }
 import io.github.juliano.pokeapi.PokeApiClient.*
-import sttp.client3.*
-import sttp.client3.ziojson.asJson
+import sttp.client4.*
+import sttp.client4.ziojson.asJson
 import sttp.model.{ MediaType, Uri }
 import sttp.monad.MonadError
 import sttp.monad.syntax.MonadErrorOps
@@ -11,10 +11,8 @@ import zio.json.JsonDecoder
 
 import scala.concurrent.duration.DurationInt
 
-case class PokeApiClient[F[_], +P](host: ApiHost = ApiHost.default)(using
-    backend: SttpBackend[F, P]
-):
-  given monadError: MonadError[F] = backend.responseMonad
+case class PokeApiClient[F[_]](backend: Backend[F], host: ApiHost = ApiHost.default):
+  given monadError: MonadError[F] = backend.monad
   private val cache: Cache[String, Product] = Scaffeine().build[String, Product]()
 
   def send[A](request: PokeRequest[A])(using JsonDecoder[A]): F[A] =
@@ -25,8 +23,8 @@ case class PokeApiClient[F[_], +P](host: ApiHost = ApiHost.default)(using
         doSend(request).flatMap {
           case Right(value) =>
             cache.put(request.toString, value.asInstanceOf[Product])
-            monadError.unit(value)
-          case Left(error) => monadError.error(error)
+            monadError.unit(value.asInstanceOf[A])
+          case Left(error) => monadError.error(new Exception(error.toString))
         }
 
   private def doSend[A](
@@ -39,7 +37,7 @@ case class PokeApiClient[F[_], +P](host: ApiHost = ApiHost.default)(using
 
 object PokeApiClient:
   type FailureResponse = ResponseException[String, String]
-  type SttpRequest[A]  = Request[Either[FailureResponse, A], Any]
+  type SttpRequest[A]  = Request[Either[FailureResponse, A]]
 
   trait PokeRequest[A](id: String | Long):
     val resource: String

@@ -1,10 +1,10 @@
 package io.github.juliano.pokeapi;
 
 import io.github.juliano.pokeapi.requests.*
-import sttp.client3.httpclient.zio.HttpClientZioBackend
+import sttp.client4.httpclient.zio.HttpClientZioBackend
 
 class ItemsSuite extends ZIOSuite:
-  val client = HttpClientZioBackend().map(implicit backend => PokeApiClient())
+  val client = HttpClientZioBackend().map(implicit backend => PokeApiClient(backend))
 
   spec("item by id", ItemRequest(1), _.name == "master-ball")
   spec("item by name", ItemRequest("master-ball"), _.id == 1)

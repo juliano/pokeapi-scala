@@ -2,10 +2,10 @@ package io.github.juliano.pokeapi
 
 import cats.effect.IO
 import io.github.juliano.pokeapi.requests.*
-import sttp.client3.httpclient.fs2.HttpClientFs2Backend
+import sttp.client4.httpclient.fs2.HttpClientFs2Backend
 
 class GamesSuite extends Fs2Suite:
-  val client = HttpClientFs2Backend.resource[IO]().map(implicit backend => PokeApiClient())
+  val client = HttpClientFs2Backend.resource[IO]().map(implicit backend => PokeApiClient(backend))
 
   spec("generation by id", GenerationRequest(1), _.name == "generation-i")
   spec("generation by name", GenerationRequest("generation-i"), _.id == 1)

@@ -1,11 +1,10 @@
 package io.github.juliano.pokeapi
 
 import io.github.juliano.pokeapi.requests.*
-import sttp.client3.{ HttpClientSyncBackend, Identity, SttpBackend }
+import sttp.client4.httpclient.HttpClientSyncBackend
 
 class BerriesSuite extends munit.FunSuite:
-  given backend: SttpBackend[Identity, Any] = HttpClientSyncBackend()
-  val client = PokeApiClient()
+  val client = PokeApiClient(HttpClientSyncBackend())
 
   test("berry by id") {
     val berry = client.send(BerryRequest(1))

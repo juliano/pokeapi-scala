@@ -12,7 +12,7 @@ To get started check the documentation on [https://pokeapi.co/docs/v2](https://p
 Add the following to your build.sbt:
 
 ```scala
-libraryDependencies += "io.github.juliano" % "pokeapi-scala_3" % "0.3.0"
+libraryDependencies += "io.github.juliano" % "pokeapi-scala_3" % "0.4.0"
 ```
 
 ### `Sttp` backends support
@@ -21,7 +21,7 @@ This client is written using [sttp](https://sttp.softwaremill.com/en/latest/inde
 
 ## Usage
 
-Instantiate a backend implicitly, create a `PokeApiClient()` and start consuming the api, calling `client.send(PokeRequest(id | name))`. Most requests accept an `id: Long` or `name: String` (have a look at [Scala 3 Union Types](https://docs.scala-lang.org/scala3/book/types-union.html)).
+Instantiate a backend, use it create a `PokeApiClient(backend)` and start consuming the api, calling `client.send(PokeRequest(id | name))`. Most requests accept an `id: Long` or `name: String` (have a look at [Scala 3 Union Types](https://docs.scala-lang.org/scala3/book/types-union.html)).
 
 It's possible to [list / paginate resources](https://pokeapi.co/docs/v2#resource-listspagination-section) as well, calling `client.send(PokeRequest.resourceList(offset: Int, limit: Int))`
 
@@ -35,43 +35,23 @@ Every response is automatically cached in memory, making all subsequent requests
 
 ```scala
 import io.github.juliano.pokeapi.requests.BerryRequest
-import sttp.client3.{ HttpClientSyncBackend, Identity, SttpBackend }
+import sttp.client4.httpclient.HttpClientSyncBackend
 
-given backend: SttpBackend[Identity, Any] = HttpClientSyncBackend()
-val client = PokeApiClient()
+val client = PokeApiClient(HttpClientSyncBackend())
 
 val berry = client.send(BerryRequest(1))
 println(berry.name)
-```
-
-### Try
-
-```scala
-import io.github.juliano.pokeapi.requests.MoveRequest
-import sttp.client3.{ SttpBackend, TryHttpURLConnectionBackend }
-import scala.util.*
-
-given backend: SttpBackend[Try, Any] = TryHttpURLConnectionBackend()
-val client = PokeApiClient()
-
-client.send(MoveRequest("pound")) match {
-    case Success(move) => println(move.names)
-    case Failure(t)    => println(s"Failed with: $t")
-}
 ```
 
 ### Future
 
 ```scala
 import io.github.juliano.pokeapi.requests.ContestTypeRequest
-import sttp.capabilities.WebSockets
-import sttp.client3.{ HttpClientFutureBackend, SttpBackend }
+import sttp.client4.httpclient.HttpClientFutureBackend
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
 import scala.util.*
 
-given backend: SttpBackend[Future, WebSockets] = HttpClientFutureBackend()
-val client = PokeApiClient()
+val client = PokeApiClient(HttpClientFutureBackend())
 
 client.send(ContestTypeRequest(1)).onComplete {
     case Success(contest) => println(contest.names)
@@ -83,10 +63,10 @@ client.send(ContestTypeRequest(1)).onComplete {
 
 ```scala
 import io.github.juliano.pokeapi.requests.PokemonRequest
-import sttp.client3.asynchttpclient.zio.AsyncHttpClientZioBackend
+import sttp.client4.asynchttpclient.zio.AsyncHttpClientZioBackend
 import zio.{ Runtime, Unsafe, ZIO }
 
-val client = AsyncHttpClientZioBackend().map(implicit backend => PokeApiClient())
+val client = AsyncHttpClientZioBackend().map(implicit backend => PokeApiClient(backend))
 
 val zio = client.flatMap(_.send(PokemonRequest("bulbasaur")))
 val pokemon = Unsafe.unsafeCompat { implicit u =>
@@ -101,12 +81,28 @@ print(pokemon.id)
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 import io.github.juliano.pokeapi.requests.LocationRequest
-import sttp.client3.asynchttpclient.cats.AsyncHttpClientCatsBackend
+import sttp.client4.asynchttpclient.cats.AsyncHttpClientCatsBackend
 
-val client = AsyncHttpClientCatsBackend[IO]().map(implicit backend => PokeApiClient())
+val client = AsyncHttpClientCatsBackend[IO]().map(implicit backend => PokeApiClient(backend))
 
 val list = client.flatMap(_.send(LocationRequest.resourceList())).unsafeRunSync()
 print(list.count)
+```
+
+### Pekko
+
+```scala
+import io.github.juliano.pokeapi.requests.MoveRequest
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.util.*
+import sttp.client4.pekkohttp.PekkoHttpBackend
+
+val client = PokeApiClient(PekkoHttpBackend())
+
+client.send(MoveRequest("pound")).onComplete {
+    case Success(move) => println(move.names)
+    case Failure(t)    => println(s"Failed with: $t")
+}
 ```
 
 You can find more examples using Fs2, Armaria and okhttp [in the tests](https://github.com/juliano/pokeapi-scala/tree/main/src/test/scala/io/github/juliano/pokeapi)
