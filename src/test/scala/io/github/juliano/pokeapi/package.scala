@@ -7,7 +7,7 @@ package object pokeapi:
   trait ZIOSuite extends munit.FunSuite:
     import zio.{ Runtime, Unsafe, ZIO }
 
-    val client: ZIO[Any, Throwable, PokeApiClient[[A] =>> zio.ZIO[Any, Throwable, A], _]]
+    val client: ZIO[Any, Throwable, PokeApiClient[[A] =>> zio.ZIO[Any, Throwable, A], ?]]
 
     def spec[T](label: String, request: PokeRequest[T], f: T => Boolean)(using
         JsonDecoder[T]

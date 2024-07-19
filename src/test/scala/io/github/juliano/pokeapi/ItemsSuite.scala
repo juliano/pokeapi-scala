@@ -8,7 +8,7 @@ class ItemsSuite extends ZIOSuite:
 
   spec("item by id", ItemRequest(1), _.name == "master-ball")
   spec("item by name", ItemRequest("master-ball"), _.id == 1)
-  spec("item resource list", ItemRequest.resourceList(), _.count == 2110)
+  spec("item resource list", ItemRequest.resourceList(), _.count == 2169)
 
   spec("item attribute by id", ItemAttributeRequest(1), _.name == "countable")
   spec("item attribute by name", ItemAttributeRequest("countable"), _.id == 1)

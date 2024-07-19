@@ -15,5 +15,5 @@ class MachinesSuite extends munit.FunSuite:
   }
   test("machine resource list") {
     val list = client.send(MachineRequest.resourceList())
-    assert(list.count == 1688)
+    assert(list.count == 2102)
   }

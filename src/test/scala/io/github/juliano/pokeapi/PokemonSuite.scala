@@ -74,4 +74,4 @@ class PokemonSuite extends ZIOSuite:
 
   spec("type by id", TypeRequest(1), _.name == "normal")
   spec("type by name", TypeRequest("normal"), _.id == 1)
-  spec("type resource list", TypeRequest.resourceList(), _.count == 20)
+  spec("type resource list", TypeRequest.resourceList(), _.count == 21)
