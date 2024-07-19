@@ -35,9 +35,10 @@ Every response is automatically cached in memory, making all subsequent requests
 
 ```scala
 import io.github.juliano.pokeapi.requests.BerryRequest
-import sttp.client4.{ HttpClientSyncBackend, Identity, SttpBackend }
+import sttp.client4.httpclient.HttpClientSyncBackend
+import sttp.client4.SyncBackend
 
-given backend: SttpBackend[Identity, Any] = HttpClientSyncBackend()
+given backend: SyncBackend = HttpClientSyncBackend()
 val client = PokeApiClient()
 
 val berry = client.send(BerryRequest(1))
@@ -48,10 +49,11 @@ println(berry.name)
 
 ```scala
 import io.github.juliano.pokeapi.requests.MoveRequest
-import sttp.client4.{ SttpBackend, TryHttpURLConnectionBackend }
+import sttp.client4.{ Backend, DefaultSyncBackend }
+import sttp.client4.wrappers.TryBackend
 import scala.util.*
 
-given backend: SttpBackend[Try, Any] = TryHttpURLConnectionBackend()
+given backend: Backend[Try] = TryBackend(DefaultSyncBackend())
 val client = PokeApiClient()
 
 client.send(MoveRequest("pound")) match {
@@ -64,13 +66,13 @@ client.send(MoveRequest("pound")) match {
 
 ```scala
 import io.github.juliano.pokeapi.requests.ContestTypeRequest
-import sttp.capabilities.WebSockets
-import sttp.client4.{ HttpClientFutureBackend, SttpBackend }
-import scala.concurrent.ExecutionContext.Implicits.global
+import sttp.client4.Backend
+import sttp.client4.httpclient.HttpClientFutureBackend
+
 import scala.concurrent.Future
 import scala.util.*
 
-given backend: SttpBackend[Future, WebSockets] = HttpClientFutureBackend()
+given backend: Backend[Future] = HttpClientFutureBackend()
 val client = PokeApiClient()
 
 client.send(ContestTypeRequest(1)).onComplete {

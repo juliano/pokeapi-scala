@@ -1,7 +1,6 @@
 package io.github.juliano.pokeapi
 
 import io.github.juliano.pokeapi.requests.*
-import sttp.capabilities.WebSockets
 import sttp.client4.Backend
 import sttp.client4.httpclient.HttpClientFutureBackend
 
