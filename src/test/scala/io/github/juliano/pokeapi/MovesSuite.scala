@@ -1,12 +1,13 @@
 package io.github.juliano.pokeapi
 
 import io.github.juliano.pokeapi.requests.*
-import sttp.client3.{ SttpBackend, TryHttpURLConnectionBackend }
+import sttp.client4.{ Backend, DefaultSyncBackend }
+import sttp.client4.wrappers.TryBackend
 
 import scala.util.Try
 
 class MovesSuite extends TrySuite:
-  given backend: SttpBackend[Try, Any] = TryHttpURLConnectionBackend()
+  given backend: Backend[Try] = TryBackend(DefaultSyncBackend())
   val client = PokeApiClient()
 
   spec("move by id", MoveRequest(1), _.name == "pound")

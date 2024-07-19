@@ -2,7 +2,7 @@ package io.github.juliano.pokeapi
 
 import cats.effect.IO
 import io.github.juliano.pokeapi.requests.{ EvolutionChainRequest, EvolutionTriggerRequest }
-import sttp.client3.asynchttpclient.fs2.AsyncHttpClientFs2Backend
+import sttp.client4.asynchttpclient.fs2.AsyncHttpClientFs2Backend
 
 class EvolutionSuite extends Fs2Suite:
   val client = AsyncHttpClientFs2Backend.resource[IO]().map(implicit backend => PokeApiClient())

@@ -7,7 +7,7 @@ package object pokeapi:
   trait ZIOSuite extends munit.FunSuite:
     import zio.{ Runtime, Unsafe, ZIO }
 
-    val client: ZIO[Any, Throwable, PokeApiClient[[A] =>> zio.ZIO[Any, Throwable, A], ?]]
+    val client: ZIO[Any, Throwable, PokeApiClient[[A] =>> ZIO[Any, Throwable, A]]]
 
     def spec[T](label: String, request: PokeRequest[T], f: T => Boolean)(using
         JsonDecoder[T]
@@ -23,7 +23,7 @@ package object pokeapi:
     import cats.effect.IO
     import cats.effect.unsafe.implicits.global
 
-    val client: IO[PokeApiClient[IO, Any]]
+    val client: IO[PokeApiClient[IO]]
 
     def spec[T](label: String, request: PokeRequest[T], f: T => Boolean)(using
         JsonDecoder[T]
@@ -35,7 +35,7 @@ package object pokeapi:
   trait TrySuite extends munit.FunSuite:
     import scala.util.{ Failure, Success, Try }
 
-    val client: PokeApiClient[Try, Any]
+    val client: PokeApiClient[Try]
 
     def spec[T](label: String, request: PokeRequest[T], f: T => Boolean)(using
         JsonDecoder[T]
@@ -51,7 +51,7 @@ package object pokeapi:
     import scala.concurrent.Future
     import scala.util.{ Failure, Success }
 
-    val client: PokeApiClient[Future, Any]
+    val client: PokeApiClient[Future]
 
     def spec[T](label: String, request: PokeRequest[T], f: T => Boolean)(using
         JsonDecoder[T]
@@ -66,10 +66,8 @@ package object pokeapi:
     import cats.effect.IO
     import cats.effect.kernel.Resource
     import cats.effect.unsafe.implicits.global
-    import sttp.capabilities.WebSockets
-    import sttp.capabilities.fs2.Fs2Streams
 
-    val client: Resource[IO, PokeApiClient[IO, Fs2Streams[cats.effect.IO] & WebSockets]]
+    val client: Resource[IO, PokeApiClient[IO]]
 
     def spec[T](label: String, request: PokeRequest[T], f: T => Boolean)(using
         JsonDecoder[T]

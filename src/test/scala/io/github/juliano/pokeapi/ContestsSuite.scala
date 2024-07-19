@@ -2,12 +2,13 @@ package io.github.juliano.pokeapi
 
 import io.github.juliano.pokeapi.requests.*
 import sttp.capabilities.WebSockets
-import sttp.client3.{ HttpClientFutureBackend, SttpBackend }
+import sttp.client4.Backend
+import sttp.client4.httpclient.HttpClientFutureBackend
 
 import scala.concurrent.Future
 
 class ContestsSuite extends FutureSuite:
-  given backend: SttpBackend[Future, WebSockets] = HttpClientFutureBackend()
+  given backend: Backend[Future] = HttpClientFutureBackend()
   val client = PokeApiClient()
 
   spec("contest type by id", ContestTypeRequest(1), _.name == "cool")

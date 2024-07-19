@@ -1,7 +1,7 @@
 package io.github.juliano.pokeapi
 
 import io.github.juliano.pokeapi.requests.LanguageRequest
-import sttp.client3.armeria.zio.ArmeriaZioBackend
+import sttp.client4.armeria.zio.ArmeriaZioBackend
 
 class UtilitySuite extends ZIOSuite:
   val client = ArmeriaZioBackend().map(implicit backend => PokeApiClient())

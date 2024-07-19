@@ -35,7 +35,7 @@ Every response is automatically cached in memory, making all subsequent requests
 
 ```scala
 import io.github.juliano.pokeapi.requests.BerryRequest
-import sttp.client3.{ HttpClientSyncBackend, Identity, SttpBackend }
+import sttp.client4.{ HttpClientSyncBackend, Identity, SttpBackend }
 
 given backend: SttpBackend[Identity, Any] = HttpClientSyncBackend()
 val client = PokeApiClient()
@@ -48,7 +48,7 @@ println(berry.name)
 
 ```scala
 import io.github.juliano.pokeapi.requests.MoveRequest
-import sttp.client3.{ SttpBackend, TryHttpURLConnectionBackend }
+import sttp.client4.{ SttpBackend, TryHttpURLConnectionBackend }
 import scala.util.*
 
 given backend: SttpBackend[Try, Any] = TryHttpURLConnectionBackend()
@@ -65,7 +65,7 @@ client.send(MoveRequest("pound")) match {
 ```scala
 import io.github.juliano.pokeapi.requests.ContestTypeRequest
 import sttp.capabilities.WebSockets
-import sttp.client3.{ HttpClientFutureBackend, SttpBackend }
+import sttp.client4.{ HttpClientFutureBackend, SttpBackend }
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.util.*
@@ -83,7 +83,7 @@ client.send(ContestTypeRequest(1)).onComplete {
 
 ```scala
 import io.github.juliano.pokeapi.requests.PokemonRequest
-import sttp.client3.asynchttpclient.zio.AsyncHttpClientZioBackend
+import sttp.client4.asynchttpclient.zio.AsyncHttpClientZioBackend
 import zio.{ Runtime, Unsafe, ZIO }
 
 val client = AsyncHttpClientZioBackend().map(implicit backend => PokeApiClient())
@@ -101,7 +101,7 @@ print(pokemon.id)
 import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 import io.github.juliano.pokeapi.requests.LocationRequest
-import sttp.client3.asynchttpclient.cats.AsyncHttpClientCatsBackend
+import sttp.client4.asynchttpclient.cats.AsyncHttpClientCatsBackend
 
 val client = AsyncHttpClientCatsBackend[IO]().map(implicit backend => PokeApiClient())
 

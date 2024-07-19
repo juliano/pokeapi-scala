@@ -1,12 +1,11 @@
 package io.github.juliano.pokeapi
 
 import io.github.juliano.pokeapi.requests.MachineRequest
-import sttp.capabilities.WebSockets
-import sttp.client3.{ Identity, SttpBackend }
-import sttp.client3.okhttp.OkHttpSyncBackend
+import sttp.client4.SyncBackend
+import sttp.client4.okhttp.OkHttpSyncBackend
 
 class MachinesSuite extends munit.FunSuite:
-  given backend: SttpBackend[Identity, WebSockets] = OkHttpSyncBackend()
+  given backend: SyncBackend = OkHttpSyncBackend()
   val client = PokeApiClient()
 
   test("machine by id") {
