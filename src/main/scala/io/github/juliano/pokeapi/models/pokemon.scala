@@ -1,8 +1,9 @@
 package io.github.juliano.pokeapi.models
 
-import io.github.juliano.pokeapi.models.moves.MoveStatChange
 import io.github.juliano.pokeapi.models.utility.*
+
 import zio.json.*
+import zio.json.ast.*
 
 object pokemon:
   @jsonMemberNames(SnakeCase)
@@ -269,12 +270,12 @@ object pokemon:
 
   @jsonMemberNames(SnakeCase)
   final case class PokemonSprites(
-      frontDefault: String,
-      frontShiny: String,
+      frontDefault: Option[String],
+      frontShiny: Option[String],
       frontFemale: Option[String],
       frontShinyFemale: Option[String],
-      backDefault: String,
-      backShiny: String,
+      backDefault: Option[String],
+      backShiny: Option[String],
       backFemale: Option[String],
       backShinyFemale: Option[String]
   )
@@ -290,6 +291,8 @@ object pokemon:
 
   object LocationAreaEncounter:
     given JsonDecoder[LocationAreaEncounter] = DeriveJsonDecoder.gen
+
+  type LocationAreaEncounters = List[LocationAreaEncounter]
 
   @jsonMemberNames(SnakeCase)
   final case class PokemonColor(
@@ -330,10 +333,10 @@ object pokemon:
 
   @jsonMemberNames(SnakeCase)
   final case class PokemonFormSprites(
-      frontDefault: String,
-      frontShiny: String,
-      backDefault: String,
-      backShiny: String
+      frontDefault: Option[String],
+      frontShiny: Option[String],
+      backDefault: Option[String],
+      backShiny: Option[String]
   )
 
   object PokemonFormSprites:
@@ -392,7 +395,7 @@ object pokemon:
       shape: NamedAPIResource,
       evolvesFromSpecies: Option[NamedAPIResource],
       evolutionChain: APIResource,
-      habitat: NamedAPIResource,
+      habitat: Option[NamedAPIResource],
       generation: NamedAPIResource,
       names: List[Name],
       palParkEncounters: List[PalParkEncounterArea],
@@ -483,7 +486,7 @@ object pokemon:
       pastDamageRelations: List[TypeRelationsPast],
       gameIndices: List[GenerationGameIndex],
       generation: NamedAPIResource,
-      moveDamageClass: NamedAPIResource,
+      moveDamageClass: Option[NamedAPIResource],
       names: List[Name],
       pokemon: List[TypePokemon],
       moves: List[NamedAPIResource]
@@ -517,4 +520,26 @@ object pokemon:
   )
 
   object TypeRelationsPast:
-    given JsonDecoder[TypeRelationsPast] = DeriveJsonDecoder.gen
+    // ripped from docs at https://zio.dev/zio-json/decoding#approach-4-decode-to-json-use-cursors
+    private def sequence[A, B](eithers: List[Either[A, B]]): Either[A, List[B]] =
+      eithers.partition(_.isLeft) match {
+        case (Nil, rights) => Right(rights.collect { case Right(r) => r })
+        case (lefts, _)    => Left(lefts.collect { case Left(l) => l }.head)
+      }
+
+    // damage_relations is an object instead of a list when there's only one, so wrap it in a list in that case.
+    given JsonDecoder[TypeRelationsPast] = JsonDecoder[Json].mapOrFail { c =>
+      for {
+        generation <- c.get(JsonCursor.field("generation")).flatMap(_.as[NamedAPIResource])
+        damageRelationsC = JsonCursor.field("damage_relations")
+        damageRelations <-
+          c.get(damageRelationsC >>> JsonCursor.isArray)
+            .flatMap(damageRelationsChunk =>
+              sequence(damageRelationsChunk.elements.toList.map(_.as[TypeRelations]))
+            )
+            .orElse(
+              c.get(damageRelationsC >>> JsonCursor.isObject)
+                .flatMap(_.as[TypeRelations].map(List(_)))
+            )
+      } yield TypeRelationsPast(generation, damageRelations)
+    }

@@ -21,13 +21,15 @@ This client is written using [sttp](https://sttp.softwaremill.com/en/latest/inde
 
 ## Usage
 
-Instantiate a backend implicitly, create a `PokeApiClient()` and start consuming the api, calling `client.send(PokeRequest(id | name))`. Most requests accept an `id: Long` or `name: String` (have a look at [Scala 3 Union Types](https://docs.scala-lang.org/scala3/book/types-union.html)).
+First, `import io.github.juliano.pokeapi.given`. Then instantiate a backend implicitly, create a `PokeApiClient()` and start consuming the api, calling `client.get(id | name)`. Most requests accept an `id: Long` or `name: String` (have a look at [Scala 3 Union Types](https://docs.scala-lang.org/scala3/book/types-union.html)).
 
-It's possible to [list / paginate resources](https://pokeapi.co/docs/v2#resource-listspagination-section) as well, calling `client.send(PokeRequest.resourceList(offset: Int, limit: Int))`
+It's possible to [list / paginate resources](https://pokeapi.co/docs/v2#resource-listspagination-section) as well, calling `client.getResourceList(offset: Int, limit: Int)`.
+
+All `PokeApiClient.get` methods take a type parameter, which is the data model being requested. For example, you could call `client.get[Pokemon]("bulbasaur")` to retrieve [Bulbasaur's data](https://pokeapi.co/api/v2/pokemon/bulbasaur/) or `client.getResourceList[Pokemon]()` to retrieve [a list of all Pokemon](https://pokeapi.co/api/v2/pokemon/). All model types are available under `io.github.juliano.pokeapi.models`.
 
 ### Caching
 
-Every response is automatically cached in memory, making all subsequent requests to the same resource pull cached data. 
+Every response is automatically cached in memory, making all subsequent requests to the same resource pull cached data.
 
 ## Examples
 

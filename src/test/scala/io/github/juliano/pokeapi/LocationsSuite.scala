@@ -1,24 +1,20 @@
 package io.github.juliano.pokeapi
 
-import cats.effect.IO
-import io.github.juliano.pokeapi.requests.*
-import sttp.client3.asynchttpclient.cats.AsyncHttpClientCatsBackend
+import io.github.juliano.pokeapi.models.locations.*
 
 class LocationsSuite extends CatsSuite:
-  val client = AsyncHttpClientCatsBackend[IO]().map(implicit backend => PokeApiClient())
+  spec[Location]("location by id", 1, _.name, "canalave-city")
+  spec[Location]("location by name", "canalave-city", _.id, 1)
+  spec[Location]("location resource list", _.count, 1070)
 
-  spec("location by id", LocationRequest(1), _.name == "canalave-city")
-  spec("location by name", LocationRequest("canalave-city"), _.id == 1)
-  spec("location resource list", LocationRequest.resourceList(), _.count == 1036)
+  spec[LocationArea]("location area by id", 1, _.name, "canalave-city-area")
+  spec[LocationArea]("location area by name", "canalave-city-area", _.id, 1)
+  spec[LocationArea]("location area resource list", _.count, 1089)
 
-  spec("location area by id", LocationAreaRequest(1), _.name == "canalave-city-area")
-  spec("location area by name", LocationAreaRequest("canalave-city-area"), _.id == 1)
-  spec("location area resource list", LocationAreaRequest.resourceList(), _.count == 1054)
+  spec[PalParkArea]("pal park area by id", 1, _.name, "forest")
+  spec[PalParkArea]("pal park area by name", "forest", _.id, 1)
+  spec[PalParkArea]("pal park area resource list", _.count, 5)
 
-  spec("pal park area by id", PalParkAreaRequest(1), _.name == "forest")
-  spec("pal park area by name", PalParkAreaRequest("forest"), _.id == 1)
-  spec("pal park area resource list", PalParkAreaRequest.resourceList(), _.count == 5)
-
-  spec("region by id", RegionRequest(1), _.name == "kanto")
-  spec("region by name", RegionRequest("kanto"), _.id == 1)
-  spec("region resource list", RegionRequest.resourceList(), _.count == 10)
+  spec[Region]("region by id", 1, _.name, "kanto")
+  spec[Region]("region by name", "kanto", _.id, 1)
+  spec[Region]("region resource list", _.count, 10)

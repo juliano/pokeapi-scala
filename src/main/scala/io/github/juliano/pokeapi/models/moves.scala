@@ -2,6 +2,7 @@ package io.github.juliano.pokeapi.models
 
 import io.github.juliano.pokeapi.models.pokemon.AbilityEffectChange
 import io.github.juliano.pokeapi.models.utility.*
+
 import zio.json.*
 
 object moves:
@@ -9,14 +10,14 @@ object moves:
   final case class Move(
       id: Int,
       name: String,
-      accuracy: Int,
+      accuracy: Option[Int],
       effectChance: Option[Int],
-      pp: Int,
+      pp: Option[Int],
       priority: Int,
-      power: Int,
-      contestCombos: ContestComboSets,
-      contestType: NamedAPIResource,
-      contestEffect: APIResource,
+      power: Option[Int],
+      contestCombos: Option[ContestComboSets],
+      contestType: Option[NamedAPIResource],
+      contestEffect: Option[APIResource],
       damageClass: NamedAPIResource,
       effectEntries: List[VerboseEffect],
       effectChanges: List[AbilityEffectChange],
@@ -24,11 +25,11 @@ object moves:
       flavorTextEntries: List[MoveFlavorText],
       generation: NamedAPIResource,
       machines: List[MachineVersionDetail],
-      meta: MoveMetaData,
+      meta: Option[MoveMetaData],
       names: List[Name],
       pastValues: List[PastMoveStatValues],
       statChanges: List[MoveStatChange],
-      superContestEffect: APIResource,
+      superContestEffect: Option[APIResource],
       target: NamedAPIResource,
       `type`: NamedAPIResource
   )
@@ -86,12 +87,12 @@ object moves:
 
   @jsonMemberNames(SnakeCase)
   final case class PastMoveStatValues(
-      accuracy: Int,
-      effectChance: Int,
-      power: Int,
-      pp: Int,
+      accuracy: Option[Int],
+      effectChance: Option[Int],
+      power: Option[Int],
+      pp: Option[Int],
       effectEntries: List[VerboseEffect],
-      `type`: NamedAPIResource,
+      `type`: Option[NamedAPIResource],
       versionGroup: NamedAPIResource
   )
 

@@ -1,6 +1,7 @@
 package io.github.juliano.pokeapi.models
 
 import io.github.juliano.pokeapi.models.utility.{ Name, NamedAPIResource }
+
 import zio.json.*
 
 object evolution:
@@ -34,7 +35,7 @@ object evolution:
       knownMove: Option[NamedAPIResource],
       knownMoveType: Option[NamedAPIResource],
       location: Option[NamedAPIResource],
-      minLevel: Int,
+      minLevel: Option[Int],
       minHappiness: Option[Int],
       minBeauty: Option[Int],
       minAffection: Option[Int],

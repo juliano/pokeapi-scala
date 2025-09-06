@@ -1,27 +1,24 @@
 package io.github.juliano.pokeapi;
 
-import io.github.juliano.pokeapi.requests.*
-import sttp.client3.httpclient.zio.HttpClientZioBackend
+import io.github.juliano.pokeapi.models.items.*
 
 class ItemsSuite extends ZIOSuite:
-  val client = HttpClientZioBackend().map(implicit backend => PokeApiClient())
+  spec[Item]("item by id", 1, _.name, "master-ball")
+  spec[Item]("item by name", "master-ball", _.id, 1)
+  spec[Item]("item resource list", _.count, 2180)
 
-  spec("item by id", ItemRequest(1), _.name == "master-ball")
-  spec("item by name", ItemRequest("master-ball"), _.id == 1)
-  spec("item resource list", ItemRequest.resourceList(), _.count == 2110)
+  spec[ItemAttribute]("item attribute by id", 1, _.name, "countable")
+  spec[ItemAttribute]("item attribute by name", "countable", _.id, 1)
+  spec[ItemAttribute]("item attribute resource list", _.count, 8)
 
-  spec("item attribute by id", ItemAttributeRequest(1), _.name == "countable")
-  spec("item attribute by name", ItemAttributeRequest("countable"), _.id == 1)
-  spec("item attribute resource list", ItemAttributeRequest.resourceList(), _.count == 8)
+  spec[ItemCategory]("item category by id", 1, _.name, "stat-boosts")
+  spec[ItemCategory]("item category by name", "stat-boosts", _.id, 1)
+  spec[ItemCategory]("item category resource list", _.count, 54)
 
-  spec("item category by id", ItemCategoryRequest(1), _.name == "stat-boosts")
-  spec("item category by name", ItemCategoryRequest("stat-boosts"), _.id == 1)
-  spec("item category resource list", ItemCategoryRequest.resourceList(), _.count == 54)
+  spec[ItemFlingEffect]("item fling effect by id", 1, _.name, "badly-poison")
+  spec[ItemFlingEffect]("item fling effect by name", "badly-poison", _.id, 1)
+  spec[ItemFlingEffect]("item fling effect resource list", _.count, 7)
 
-  spec("item fling effect by id", ItemFlingEffectRequest(1), _.name == "badly-poison")
-  spec("item fling effect by name", ItemFlingEffectRequest("badly-poison"), _.id == 1)
-  spec("item fling effect resource list", ItemFlingEffectRequest.resourceList(), _.count == 7)
-
-  spec("item pocket by id", ItemPocketRequest(1), _.name == "misc")
-  spec("item pocket by name", ItemPocketRequest("misc"), _.id == 1)
-  spec("item pocket resource list", ItemPocketRequest.resourceList(), _.count == 8)
+  spec[ItemPocket]("item pocket by id", 1, _.name, "misc")
+  spec[ItemPocket]("item pocket by name", "misc", _.id, 1)
+  spec[ItemPocket]("item pocket resource list", _.count, 8)

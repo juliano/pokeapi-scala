@@ -1,6 +1,7 @@
 package io.github.juliano.pokeapi.models
 
 import io.github.juliano.pokeapi.models.utility.*
+
 import zio.json.*
 
 object contests:

@@ -1,38 +1,32 @@
 package io.github.juliano.pokeapi
 
-import io.github.juliano.pokeapi.requests.*
-import sttp.client3.{ SttpBackend, TryHttpURLConnectionBackend }
-
-import scala.util.Try
+import io.github.juliano.pokeapi.models.moves.*
 
 class MovesSuite extends TrySuite:
-  given backend: SttpBackend[Try, Any] = TryHttpURLConnectionBackend()
-  val client = PokeApiClient()
+  spec[Move]("move by id", 1, _.name, "pound")
+  spec[Move]("move by name", "pound", _.id, 1)
+  spec[Move]("move by resource list", _.count, 937)
 
-  spec("move by id", MoveRequest(1), _.name == "pound")
-  spec("move by name", MoveRequest("pound"), _.id == 1)
-  spec("move by resource list", MoveRequest.resourceList(), _.count == 937)
+  spec[MoveAilment]("move ailment by id", 1, _.name, "paralysis")
+  spec[MoveAilment]("move ailment by name", "paralysis", _.id, 1)
+  spec[MoveAilment]("move ailment by resource list", _.count, 22)
 
-  spec("move ailment by id", MoveAilmentRequest(1), _.name == "paralysis")
-  spec("move ailment by name", MoveAilmentRequest("paralysis"), _.id == 1)
-  spec("move ailment by resource list", MoveAilmentRequest.resourceList(), _.count == 22)
+  spec[MoveBattleStyle]("move battle style by id", 1, _.name, "attack")
+  spec[MoveBattleStyle]("move battle style by name", "attack", _.id, 1)
+  spec[MoveBattleStyle]("move battle style by resource list", _.count, 3)
 
-  spec("move battle style by id", MoveBattleStyleRequest(1), _.name == "attack")
-  spec("move battle style by name", MoveBattleStyleRequest("attack"), _.id == 1)
-  spec("move battle style by resource list", MoveBattleStyleRequest.resourceList(), _.count == 3)
+  spec[MoveCategory]("move category by id", 1, _.name, "ailment")
+  spec[MoveCategory]("move category by name", "ailment", _.id, 1)
+  spec[MoveCategory]("move category by resource list", _.count, 14)
 
-  spec("move category by id", MoveCategoryRequest(1), _.name == "ailment")
-  spec("move category by name", MoveCategoryRequest("ailment"), _.id == 1)
-  spec("move category by resource list", MoveCategoryRequest.resourceList(), _.count == 14)
+  spec[MoveDamageClass]("move damage by id", 1, _.name, "status")
+  spec[MoveDamageClass]("move damage by name", "status", _.id, 1)
+  spec[MoveDamageClass]("move damage by resource list", _.count, 3)
 
-  spec("move damage by id", MoveDamageClassRequest(1), _.name == "status")
-  spec("move damage by name", MoveDamageClassRequest("status"), _.id == 1)
-  spec("move damage by resource list", MoveDamageClassRequest.resourceList(), _.count == 3)
+  spec[MoveLearnMethod]("move learn method by id", 1, _.name, "level-up")
+  spec[MoveLearnMethod]("move learn method by name", "level-up", _.id, 1)
+  spec[MoveLearnMethod]("move learn method by resource list", _.count, 11)
 
-  spec("move learn method by id", MoveLearnMethodRequest(1), _.name == "level-up")
-  spec("move learn method by name", MoveLearnMethodRequest("level-up"), _.id == 1)
-  spec("move learn method by resource list", MoveLearnMethodRequest.resourceList(), _.count == 11)
-
-  spec("move target by id", MoveTargetRequest(1), _.name == "specific-move")
-  spec("move target by name", MoveTargetRequest("specific-move"), _.id == 1)
-  spec("move target by resource list", MoveTargetRequest.resourceList(), _.count == 16)
+  spec[MoveTarget]("move target by id", 1, _.name, "specific-move")
+  spec[MoveTarget]("move target by name", "specific-move", _.id, 1)
+  spec[MoveTarget]("move target by resource list", _.count, 16)

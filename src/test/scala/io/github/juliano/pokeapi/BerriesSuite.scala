@@ -1,47 +1,16 @@
 package io.github.juliano.pokeapi
 
-import io.github.juliano.pokeapi.requests.*
-import sttp.client3.{ HttpClientSyncBackend, Identity, SttpBackend }
+import io.github.juliano.pokeapi.models.berries.*
 
-class BerriesSuite extends munit.FunSuite:
-  given backend: SttpBackend[Identity, Any] = HttpClientSyncBackend()
-  val client = PokeApiClient()
+class BerriesSuite extends SyncSuite:
+  spec[Berry]("berry by id", 1, _.name, "cheri")
+  spec[Berry]("berry by name", "cheri", _.id, 1)
+  spec[Berry]("berry resource list", _.count, 64)
 
-  test("berry by id") {
-    val berry = client.send(BerryRequest(1))
-    assert(berry.name == "cheri")
-  }
-  test("berry by name") {
-    val berry = client.send(BerryRequest("cheri"))
-    assert(berry.id == 1)
-  }
-  test("berry resource list") {
-    val list = client.send(BerryRequest.resourceList())
-    assert(list.count == 64)
-  }
+  spec[BerryFirmness]("berry firmness by id", 1, _.name, "very-soft")
+  spec[BerryFirmness]("berry firmness by name", "very-soft", _.id, 1)
+  spec[BerryFirmness]("berry firmness resource list", _.count, 5)
 
-  test("berry firmness by id") {
-    val berryFirmness = client.send(BerryFirmnessRequest(1))
-    assert(berryFirmness.name == "very-soft")
-  }
-  test("berry firmness by name") {
-    val berryFirmness = client.send(BerryFirmnessRequest("very-soft"))
-    assert(berryFirmness.id == 1)
-  }
-  test("berry firmness resource list") {
-    val list = client.send(BerryFirmnessRequest.resourceList())
-    assert(list.count == 5)
-  }
-
-  test("berry flavor by id") {
-    val berryFlavor = client.send(BerryFlavorRequest(1))
-    assert(berryFlavor.name == "spicy")
-  }
-  test("berry flavor by name") {
-    val berryFlavor = client.send(BerryFlavorRequest("spicy"))
-    assert(berryFlavor.id == 1)
-  }
-  test("berry flavor resource list") {
-    val list = client.send(BerryFlavorRequest.resourceList())
-    assert(list.count == 5)
-  }
+  spec[BerryFlavor]("berry flavor by id", 1, _.name, "spicy")
+  spec[BerryFlavor]("berry flavor by name", "spicy", _.id, 1)
+  spec[BerryFlavor]("berry flavor resource list", _.count, 5)

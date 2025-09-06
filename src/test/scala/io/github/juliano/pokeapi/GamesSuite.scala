@@ -1,24 +1,20 @@
 package io.github.juliano.pokeapi
 
-import cats.effect.IO
-import io.github.juliano.pokeapi.requests.*
-import sttp.client3.httpclient.fs2.HttpClientFs2Backend
+import io.github.juliano.pokeapi.models.games.*
 
 class GamesSuite extends Fs2Suite:
-  val client = HttpClientFs2Backend.resource[IO]().map(implicit backend => PokeApiClient())
+  spec[Generation]("generation by id", 1, _.name, "generation-i")
+  spec[Generation]("generation by name", "generation-i", _.id, 1)
+  spec[Generation]("generation resource list", _.count, 9)
 
-  spec("generation by id", GenerationRequest(1), _.name == "generation-i")
-  spec("generation by name", GenerationRequest("generation-i"), _.id == 1)
-  spec("generation resource list", GenerationRequest.resourceList(), _.count == 9)
+  spec[Pokedex]("pokedex by id", 1, _.name, "national")
+  spec[Pokedex]("pokedex by name", "national", _.id, 1)
+  spec[Pokedex]("pokedex resource list", _.count, 32)
 
-  spec("pokedex by id", PokedexRequest(1), _.name == "national")
-  spec("pokedex by name", PokedexRequest("national"), _.id == 1)
-  spec("pokedex resource list", PokedexRequest.resourceList(), _.count == 32)
+  spec[Version]("version by id", 1, _.name, "red")
+  spec[Version]("version by name", "red", _.id, 1)
+  spec[Version]("version resource list", _.count, 46)
 
-  spec("version by id", VersionRequest(1), _.name == "red")
-  spec("version by name", VersionRequest("red"), _.id == 1)
-  spec("version resource list", VersionRequest.resourceList(), _.count == 43)
-
-  spec("version group by id", VersionGroupRequest(1), _.name == "red-blue")
-  spec("version group by name", VersionGroupRequest("red-blue"), _.id == 1)
-  spec("version group resource list", VersionGroupRequest.resourceList(), _.count == 27)
+  spec[VersionGroup]("version group by id", 1, _.name, "red-blue")
+  spec[VersionGroup]("version group by name", "red-blue", _.id, 1)
+  spec[VersionGroup]("version group resource list", _.count, 29)
